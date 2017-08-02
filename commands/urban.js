@@ -11,7 +11,7 @@ exports.run = (client, message, args) =>{
         .setFooter(`${urbaned.urbanURL} | Likes: ${urbaned.thumbsUp} | Dislikes: ${urbaned.thumbsDown}`);
       message.channel.send({embed});
     });
-    return
+    return;
   }
 
   let toUrban = args.join(' '); 

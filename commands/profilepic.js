@@ -1,9 +1,6 @@
-const Discord = module.require('discord.js');
+const Discord = require('discord.js');
 
 module.exports.run = async(client, message, args) =>{
-    // var mention = message.mentions.users.first();
-    // if(mention <= 0){var user = message.author.displayAvatarURL}  
-    // if(mention >= 0){var user = mention.displayAvatarURL}
 let user = message.mentions.users.first();
 if (message.mentions.users.size < 1){let embed = new Discord.RichEmbed()
       .setTitle('Please mention a user!')

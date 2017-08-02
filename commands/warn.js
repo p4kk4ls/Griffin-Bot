@@ -23,24 +23,24 @@ exports.run = (client, message, args) => {
     message.channel.send({embed});
     return;
   }
-  message.delete()
+  message.delete();
   if(message.guild.channels.find('name', 'mod-log')){
     const embedChat = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username} used "WARNING LETTER"!`, message.author.avatarURL)
-    .setColor('#ff5d00')
-    .setTimestamp(new Date)
-    .addField(`${user.tag} has been warned!`, `Hes should get a PM with more info!\nCheck mod-log for more info.`, true)
-    .setFooter('Warn', client.user.avatarURL);
-  const embed = new Discord.RichEmbed()
-    .setDescription('Copy of this message was sent to #mod-log and the warned user!')
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .setColor('#ff5d00')
-    .setTimestamp(new Date())
-    .addField('Action', 'Warning', true)
-    .addField('Moderator', `${message.author.tag}`, true)
-    .addField('Target', `${user.tag}`, true)
-    .addField('Reason', `${reason}`, false)
-    .setFooter('Warn', client.user.avatarURL);
+      .setAuthor(`${message.author.username} used "WARNING LETTER"!`, message.author.avatarURL)
+      .setColor('#ff5d00')
+      .setTimestamp(new Date)
+      .addField(`${user.tag} has been warned!`, 'Hes should get a PM with more info!\nCheck mod-log for more info.', true)
+      .setFooter('Warn', client.user.avatarURL);
+    const embed = new Discord.RichEmbed()
+      .setDescription('Copy of this message was sent to #mod-log and the warned user!')
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setColor('#ff5d00')
+      .setTimestamp(new Date())
+      .addField('Action', 'Warning', true)
+      .addField('Moderator', `${message.author.tag}`, true)
+      .addField('Target', `${user.tag}`, true)
+      .addField('Reason', `${reason}`, false)
+      .setFooter('Warn', client.user.avatarURL);
     const embedUser = new Discord.RichEmbed()
       .setDescription('YOU HAVE BEEN WARNED!!')
       .setAuthor(message.author.username, message.author.avatarURL)
@@ -51,34 +51,34 @@ exports.run = (client, message, args) => {
       .addField('Target', `${user.tag}`, true)
       .addField('Reason', `${reason}`, false)
       .setFooter('Warn', client.user.avatarURL);
-  message.channel.send({embed: embedChat});
-  message.guild.channels.find('name', 'mod-log').send({embed})
-  client.users.get(user.id).send({embed: embedUser});
-} else {
-const embed = new Discord.RichEmbed()
-  .setDescription('Copy of this message was sent to owner and the warned user!\nCreating a #mod-log channel is recomended!')
-  .setAuthor(message.author.username, message.author.avatarURL)
-  .setColor('#ff5d00')
-  .setTimestamp(new Date())
-  .addField('Action', 'Warning', true)
-  .addField('Moderator', `${message.author.tag}`, true)
-  .addField('Target', `${user.tag}`, true)
-  .addField('Reason', `${reason}`, false)
-  .setFooter('Warn', client.user.avatarURL);
-  const embedUser = new Discord.RichEmbed()
-    .setDescription('YOU HAVE BEEN WARNED!!')
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .setColor('#ff5d00')
-    .setTimestamp(new Date())
-    .addField('Action', 'Warning', true)
-    .addField('Moderator', `${message.author.tag}`, true)
-    .addField('Target', `${user.tag}`, true)
-    .addField('Reason', `${reason}`, false)
-    .setFooter('Warn', client.user.avatarURL);
-message.channel.send({embed});
-client.users.get(user.id).send({embed: embedUser});
-message.guild.owner.send({embed});
-}
+    message.channel.send({embed: embedChat});
+    message.guild.channels.find('name', 'mod-log').send({embed});
+    client.users.get(user.id).send({embed: embedUser});
+  } else {
+    const embed = new Discord.RichEmbed()
+      .setDescription('Copy of this message was sent to owner and the warned user!\nCreating a #mod-log channel is recomended!')
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setColor('#ff5d00')
+      .setTimestamp(new Date())
+      .addField('Action', 'Warning', true)
+      .addField('Moderator', `${message.author.tag}`, true)
+      .addField('Target', `${user.tag}`, true)
+      .addField('Reason', `${reason}`, false)
+      .setFooter('Warn', client.user.avatarURL);
+    const embedUser = new Discord.RichEmbed()
+      .setDescription('YOU HAVE BEEN WARNED!!')
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setColor('#ff5d00')
+      .setTimestamp(new Date())
+      .addField('Action', 'Warning', true)
+      .addField('Moderator', `${message.author.tag}`, true)
+      .addField('Target', `${user.tag}`, true)
+      .addField('Reason', `${reason}`, false)
+      .setFooter('Warn', client.user.avatarURL);
+    message.channel.send({embed});
+    client.users.get(user.id).send({embed: embedUser});
+    message.guild.owner.send({embed});
+  }
 };
 
 exports.help = {
