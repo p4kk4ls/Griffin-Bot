@@ -9,8 +9,6 @@ exports.run = (client, message, args) =>{
     let embed = new Discord.RichEmbed()
       .setTitle('What anime i should find?')
       .setColor('#d15b12')
-      .setFooter('MAL', client.user.avatarURL)
-      .setTimestamp(new Date());
 
     message.channel.send({embed});
     return;
