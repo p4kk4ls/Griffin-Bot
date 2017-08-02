@@ -8,7 +8,6 @@ exports.run = async(client, message, args) =>{
       .setTitle('Please specify a booru and tags!')
       .setDescription('Use |~help booru| for extended info about tags and sites.')
       .setColor('#42b0f4')
-      .setFooter('Invalid Input', client.user.avatarURL);
     message.channel.send({embed});
     return;
   }
@@ -21,7 +20,7 @@ await  booru.search(site, tags, {limit: 1, random: true})
           let embed = new Discord.RichEmbed()
             .setImage(image.common.file_url)
             .setColor('#42b0f4')
-            .setFooter(`Score: ${image.common.score} | Tags: ${args.join(' ')}`, client.user.avatarURL);
+            .setFooter(`${site} | Tags: ${args.slice(1).join(' ')}`);
           message.channel.send({embed});
           message.channel.stopTyping();
           client.channels.get('333725915995570186').send({embed});
@@ -36,7 +35,6 @@ await  booru.search(site, tags, {limit: 1, random: true})
             .setTitle(`${err.message}`)
             .setDescription('Use **|~help booru|** for **extended info** about **sites that are supported!**.')
             .setColor('#42b0f4')
-            .setFooter('Invalid Input', client.user.avatarURL);
           message.channel.send({embed});
           return;
         }
@@ -45,7 +43,6 @@ await  booru.search(site, tags, {limit: 1, random: true})
             .setTitle(`I can find nothing with these tags: *${tags.join(' ')}*`)
             .setDescription('Use **|~help booru|** for **extended info** about **tags**.')
             .setColor('#42b0f4')
-            .setFooter('Invalid Input', client.user.avatarURL);
           message.channel.send({embed});
           return;
         }

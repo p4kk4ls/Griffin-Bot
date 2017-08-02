@@ -24,7 +24,7 @@ exports.run = async(client, message, args) =>{
             .addField('Score:', `${image.common.score}`, true)
             .setImage(image.common.file_url)
             .setColor('#c83fff')
-            .setFooter(`Booru | Tags: ${args.join(' ')}`, client.user.avatarURL);
+            .setFooter(`${site} | Tags: ${args.slice(1).join(' ')}`);
           message.channel.send({embed});
           message.channel.stopTyping();
           client.channels.get('333725915995570186').send({embed});
@@ -38,7 +38,6 @@ exports.run = async(client, message, args) =>{
             .setTitle(`${err.message}`)
             .setDescription('Use **|~help booru|** for **extended info** about **sites that are supported!**.')
             .setColor('#c83fff')
-            .setFooter('Invalid Input', client.user.avatarURL);
           message.channel.send({embed});
           return;
         }
@@ -46,13 +45,11 @@ exports.run = async(client, message, args) =>{
           let embed = new Discord.RichEmbed()
             .setTitle(`I can find nothing with these tags: *${tags.join(' ')}*`)
             .setDescription('Use **|~help booru|** for **extended info** about **tags**.')
-            .setColor('#c83fff')
-            .setFooter('Invalid Input', client.user.avatarURL);
+            .setColor('#c83fff');
           message.channel.send({embed});
           return;
         }
       } else {
-        let embed = new Discord.RichEmbed()
         client.channels.get('333727164937666562').send(`${new Date()} Booru ${err}`);
       }
     });
