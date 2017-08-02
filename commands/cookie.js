@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-exports.run = (client, message, args) =>{
+exports.run = (client, message) =>{
   let giveCookieto = message.mentions.users.first();
   if(giveCookieto == message.author) return message.channel.send('Loser!');
 

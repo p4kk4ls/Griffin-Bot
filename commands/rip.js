@@ -1,7 +1,6 @@
 const Jimp = require('jimp');
-exports.run = (client, message, args) =>{
-  let rip = message.content.slice(' ').slice(1);
 
+exports.run = (client, message, args) =>{
   Jimp.read('http://tombgen.appspot.com/images/tombstone.png', function (err, image) {
     let rip = args.join(' ');
     message.channel.startTyping();

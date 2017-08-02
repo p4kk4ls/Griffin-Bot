@@ -1,4 +1,4 @@
-const Discord = module.require('discord.js')
+const Discord = require('discord.js')
 
 module.exports.run = async(client, message, args) =>{
     let user = message.mentions.users.first();
@@ -23,8 +23,6 @@ module.exports.run = async(client, message, args) =>{
       .addField('User ID', `${user.id}`, true)
       .addField('Status', userstatus,true)
       .addField(`Joined Discord`,user.createdAt)
-      .setFooter('User info', user.avatarURL)
-      .setTimestamp(new Date());
     message.channel.send({embed});
     return
 }
