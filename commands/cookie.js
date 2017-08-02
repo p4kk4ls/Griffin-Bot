@@ -7,7 +7,7 @@ exports.run = (client, message, args) =>{
     let embed = new Discord.RichEmbed()
       .setTitle('You havent said who\'s cookie it is so i ate it.')
       .setColor('#683e0d')
-      .setThumbnail('https://s-media-cache-ak0.pinimg.com/originals/ba/7d/0d/ba7d0df9c103c6c51b9921695dc9381e.jpg');
+      .setThumbnail('http://www.markrice.com/birds/2005images/20051211_0031%20PiperHubble%20Eating%20Sandwich.JPG');
 
     message.channel.send({embed});
     return;
@@ -17,12 +17,12 @@ exports.run = (client, message, args) =>{
     .setAuthor(message.author.username, message.author.displayAvatarURL)
     .setTitle(`Sent you a cookie ${giveCookieto.username}!`)
     .setColor('#683e0d')
-    .setThumbnail('http://www.pngall.com/wp-content/uploads/2016/07/Cookie-Download-PNG.png');
+    .setThumbnail('https://wiki.teamfortress.com/w/images/thumb/9/95/Sandvich.png');
   message.channel.send({embed});
 };
 
 exports.help = {
-  name: 'cookie',
-  description: '🍪 Gives mentioned user a cookie.',
-  usage: 'cookie [mention]'
+  name: 'sandvich',
+  description: '🍪 Gives mentioned user a sandvich.',
+  usage: 'sandvich [mention]'
 };
