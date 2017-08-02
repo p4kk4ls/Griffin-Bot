@@ -37,6 +37,6 @@ exports.run = (client, message, args) =>{
 
 exports.help = {
   name: 'anime',
-  description: '🔍 Searches for animu by its name.',
+  description: '🔍 Searches for animu.',
   usage: 'anime [name]'
 };
