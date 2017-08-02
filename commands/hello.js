@@ -5,6 +5,6 @@ exports.run = (client, message, args) =>{
 
 exports.help = {
   name: 'hello',
-  description: '👋 Hi',
+  description: '👋 Hallo',
   usage: 'hello'
 };
