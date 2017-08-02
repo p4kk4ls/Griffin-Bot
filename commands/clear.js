@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 exports.run = (client, message, args) =>{
   let number = args.join(' ');
   if(!message.guild.member(message.author).hasPermission('MANAGE_MESSAGES')) return message.reply('You dont have permissions ya twat!');
@@ -5,7 +7,13 @@ exports.run = (client, message, args) =>{
   let messagecount = parseInt(args.join(' '));
   message.channel.fetchMessages({
     limit: messagecount
-  }).then(messages => message.channel.bulkDelete(messages));
+  }).then(messages => {
+    message.channel.bulkDelete(messages);
+  });
+  let embedDelete = new Discord.RichEmbed
+    .setTitle(`Deleted ${number}`)
+    .setColor(0x00AE86);
+  message.channel.send({embed: embedDelete}).then(botmsg => botmsg.delete(5000))
   return;
 };
 
