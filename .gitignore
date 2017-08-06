@@ -61,3 +61,4 @@ config.json
 .eslintrc.json
 Utils/muzak.js
 musicqueue.json
+Utils/FTG.js
