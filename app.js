@@ -4,14 +4,17 @@ const config = require('./config.json');
 const fs = require('fs');
 const prefix = config.prefix;
 
-
-
 console.log(process.uptime())
 
 require('./Utils/events.js')(client)
 require('./Utils/onMessage.js')(client)
 if (fs.existsSync('./Utils/muzak.js')) {
 require('./Utils/muzak.js')(client)
+}
+
+//First Time Gamer Server commands
+if (fs.existsSync('./Utils/FTG.js')) {
+require('./Utils/FTG.js')(client)
 }
 
 client.commands = new Discord.Collection
