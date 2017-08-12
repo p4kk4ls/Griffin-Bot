@@ -1,7 +1,11 @@
 const Discord = require('discord.js');
-const client = new Discord.Client({disableEveryone:true});
+const client = new Discord.Client({
+    disableEveryone:true,  
+});
+
 const config = require('./config.json');
 const fs = require('fs');
+
 const prefix = config.prefix;
 
 console.log(process.uptime())
@@ -11,15 +15,8 @@ require('./Utils/require.js')(client)
 }
 require('./Utils/events.js')(client)
 require('./Utils/onMessage.js')(client)
-if (fs.existsSync('./Utils/muzak.js')) {
-require('./Utils/muzak.js')(client)
-}
-if (fs.existsSync('./PerServer/FirstTimeGamer/main.js')) {
-require('./PerServer/FirstTimeGamer/main.js')(client)
-}
-if (fs.existsSync('./PerServer/Overwatch Blanca/main.js')) {
-require('./PerServer/Overwatch Blanca/main')(client)
-}
+
+console.log(`Emoji: ${client.emojis}`)
 
 client.commands = new Discord.Collection
 
@@ -41,9 +38,11 @@ fs.readdir("./commands/", (err, files) =>{
 
 
 client.on('message', async (message) => {
+  if (!message.guild.client.hasPermisions("SEND_MESSAGES")) return;
   if(message.channel.type == 'dm') return;
   if(message.author.bot) return;
   if(!message.content.startsWith(prefix)) return;
+  if(message.channel.member(client.user).hasPermissions("SEND_MESSAGES"))
 
   let messageAray = message.content.split(' ');
   let command = messageAray[0];
