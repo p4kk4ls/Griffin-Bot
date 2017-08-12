@@ -31,8 +31,7 @@ module.exports = (client) =>{
       let embed = new Discord.RichEmbed()
         .setAuthor(`Role '${oldRole.name}/${newRole.name}' has been updated`)
         .setDescription('For more info check the audit log')
-        .setColor('#c4350d')
-        .setFooter('Role created', client.user.avatarURL)
+        .setColor(newRole.hexColor)
         .setTimestamp(new Date());
       oldRole.guild.channels.find('name', 'mod-log').send({embed});
     } else {
@@ -43,10 +42,13 @@ module.exports = (client) =>{
   client.on('roleDelete', (role) => {
     if (role.guild.channels.find('name', 'mod-log')) {
       let embed = new Discord.RichEmbed()
-        .setAuthor(`Role '${role.name}' has been deleted!`)
+        .setAuthor(`Role '${role.name}'(${role.id}) has been deleted!`)
         .setDescription('For more info check the audit log')
-        .setColor('#c4350d')
-        .setFooter('Role created', client.user.avatarURL)
+        .addField('Color', `${role.hexColor}`, true)
+        .addField('Hoist', `${role.hoist.toString}`, true)
+        .addField('Position', `${role.calculatedPosition}`, true)
+        .addField('Role Created at', `${role.createdTimestamp}`)
+        .setColor(role.hexColor)
         .setTimestamp(new Date());
       role.guild.channels.find('name', 'mod-log').send({embed});
     } else {
@@ -61,7 +63,7 @@ module.exports = (client) =>{
         .setDescription('For more info check the audit log')
         .addField('Color', `${role.hexColor}`, true)
         .addField('Hoist', `${role.hoist.toString}`, true)
-        .setColor('#c4350d')
+        .setColor(role.hexColor)
         .setTimestamp(new Date());
       role.guild.channels.find('name', 'mod-log').send({embed});
     } else {
@@ -70,9 +72,24 @@ module.exports = (client) =>{
   });
 
   client.on('guildBanAdd', (guild, user) => {
+    if (user.bot) return;
     if (guild.channels.find('name', 'mod-log')) {
       let embed = new Discord.RichEmbed()
-        .setAuthor(`${user.name} has been banned!`)
+        .setAuthor(`${user.tag} has been banned!`, user.avatarURL)
+        .setDescription('For more info check the audit log')
+        .setColor('#c4350d')
+        .setFooter('Ban', client.user.avatarURL)
+        .setTimestamp(new Date());
+      guild.channels.find('name', 'mod-log').send({embed});
+    } else {
+      return;
+    }
+  });
+
+  client.on('guildBanRemove', (guild, user) => {
+    if (guild.channels.find('name', 'mod-log')) {
+      let embed = new Discord.RichEmbed()
+        .setAuthor(`${user.name} has been unbanned!`, user.avatarURL)
         .setDescription('For more info check the audit log')
         .setColor('#c4350d')
         .setFooter('Ban', client.user.avatarURL)
@@ -87,12 +104,13 @@ module.exports = (client) =>{
     if(channel.type == 'dm') return;
     if (channel.guild.channels.find('name', 'mod-log')) {
       let embed = new Discord.RichEmbed()
-        .setAuthor(`Channel ${channel.name} has been created!`)
+        .setAuthor(`Channel #${channel.name}(${channel.id}) has been created!`)
         .setDescription('For more info check the audit log')
+        .addField('Type', `${channel.type}`)
         .setColor('#c4350d')
         .setFooter('Channel', client.user.avatarURL)
         .setTimestamp(new Date());
-    // channel.guild.channels.find('name', 'mod-log').send({embed})
+      channel.guild.channels.find('name', 'mod-log').send({embed});
     } else {
       return;
     }
@@ -102,8 +120,10 @@ module.exports = (client) =>{
     if(newChannel.type == 'dm') return;
     if (oldChannel.guild.channels.find('name', 'mod-log')) {
       let embed = new Discord.RichEmbed()
-        .setAuthor(`Channel ${oldChannel.name}/${newChannel.name} has been updated!`)
+        .setAuthor(`Channel #${oldChannel.name} | #${newChannel.name} has been updated!`)
         .setDescription('For more info check the audit log')
+        .addField('Type', `${oldChannel.type}`,true)
+        .addField('ID', `${oldChannel.id}`,true)
         .setColor('#c4350d')
         .setFooter('Channel', client.user.avatarURL)
         .setTimestamp(new Date());
@@ -117,8 +137,9 @@ module.exports = (client) =>{
     if(channel.type == 'dm') return;
     if (channel.guild.channels.find('name', 'mod-log')) {
       let embed = new Discord.RichEmbed()
-        .setAuthor(`Channel ${channel.name} deleted!`)
+        .setAuthor(`Channel #${channel.name}(${channel.id}) has been deleted!`)
         .setDescription('For more info check the audit log')
+        .addField('Type', `${channel.type}`)
         .setColor('#c4350d')
         .setFooter('Channel', client.user.avatarURL)
         .setTimestamp(new Date());
@@ -128,19 +149,7 @@ module.exports = (client) =>{
     }
   });
 
-  client.on('guildBanRemove', (guild, user) => {
-    if (guild.channels.find('name', 'mod-log')) {
-      let embed = new Discord.RichEmbed()
-        .setAuthor(`${user.name} has been unbanned!`)
-        .setDescription('For more info check the audit log')
-        .setColor('#c4350d')
-        .setFooter('Ban', client.user.avatarURL)
-        .setTimestamp(new Date());
-      guild.channels.find('name', 'mod-log').send({embed});
-    } else {
-      return;
-    }
-  });
+
 
   client.on('emojiCreate', (emoji) => {
     if (emoji.guild.channels.find('name', 'mod-log')) {
@@ -148,6 +157,7 @@ module.exports = (client) =>{
         .setAuthor('Emoji has been created!')
         .setDescription(`${emoji}\nFor more info check the audit log`)
         .setColor('#c4350d')
+        .setThumbnail(emoji.url)
         .setFooter('Emoji', client.user.avatarURL)
         .setTimestamp(new Date());
       emoji.guild.channels.find('name', 'mod-log').send({embed});
@@ -158,37 +168,21 @@ module.exports = (client) =>{
 
 
   client.on('guildMemberRemove', (member) => {
+    if (!member.client.hasPermisions("SEND_MESSAGES")) return;
     let embed = new Discord.RichEmbed()
       .setAuthor(`${member.user.username} just left.`, member.user.displayAvatarURL)
       .setDescription('👋 Did we say something wrong?')
-      .setColor('#c4350d')
-      .setFooter('User left', client.user.avatarURL)
-      .setTimestamp(new Date());
+      .setColor('#c4350d');
     member.guild.defaultChannel.send({embed});
-    let embed2 = new Discord.RichEmbed()
-      .setAuthor(`${member.user.username} just left from ${member.guild.name}.`, member.user.displayAvatarURL)
-      .setDescription('👋 Did we said something wrong?')
-      .setColor('#c4350d')
-      .setFooter('User left', client.user.avatarURL)
-      .setTimestamp(new Date());
-    client.channels.get('331814800046817281').send({embed: embed2});
   });
 
   client.on('guildMemberAdd', (member) => {
+    if (!member.client.hasPermisions("SEND_MESSAGES")) return;
     let embed = new Discord.RichEmbed()
       .setAuthor(`${member.user.username} welcome to our server!`, member.user.displayAvatarURL)
       .setDescription(`📥 C'mon everyone say hi to ${member.user.username}!`)
-      .setColor('#1bbc12')
-      .setFooter('User join', client.user.avatarURL)
-      .setTimestamp(new Date());
+      .setColor('#1bbc12');
     member.guild.defaultChannel.send({embed});
-    let embed2 = new Discord.RichEmbed()
-      .setAuthor(`${member.user.username} just joined ${member.guild.name}.`, member.user.displayAvatarURL)
-      .setDescription('👋 LOL i hope he dies there xd.')
-      .setColor('#0dc425')
-      .setFooter('User left', client.user.avatarURL)
-      .setTimestamp(new Date());
-    client.channels.get('331814800046817281').send({embed: embed2});
   });
 
   client.on('warn', (warn)=>{
