@@ -3,7 +3,7 @@ exports.run = (client, message) =>{
   let embed = new Discord.RichEmbed()
     .setTitle(`Infoboard for ${client.user.username}`)
     .setDescription('Here is some info about this bot!!')
-    .addField('Uptime', `${process.uptime()} Seconds`,true)
+    .addField('Uptime', `${client.uptime()} Seconds`,true)
     .addField('Code Creator', client.users.get('235047463017381888').tag, true)
     .setColor('#7f16ff')
     .setThumbnail(client.user.avatarURL);
