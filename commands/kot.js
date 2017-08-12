@@ -11,8 +11,6 @@ exports.run = (client, message) =>{
       .setImage(img)
       .setColor('#ba881b')
       .setDescription(fact)
-      .setTimestamp(new Date())
-      .setFooter('Meow', client.user.avatarURL);
     message.channel.send({embed});
   }, Math.random() * (100 - 3) + 5 * 10);
   return;

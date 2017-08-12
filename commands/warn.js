@@ -7,8 +7,7 @@ exports.run = (client, message, args) => {
     let embed = new Discord.RichEmbed()
       .setTitle('Specify a reason for warning!')
       .setColor('#f22a0c')
-      .setFooter('Warn', client.user.avatarURL)
-      .setTimestamp(new Date());
+      .setTimestamp(new Date()).then(botmsg => {botmsg.delete(5000)});
 
     message.channel.send({embed});
     return;
@@ -17,8 +16,7 @@ exports.run = (client, message, args) => {
     let embed = new Discord.RichEmbed()
       .setTitle('Please specify any mentions.')
       .setColor('#f22a0c')
-      .setFooter('Warn', client.user.avatarURL)
-      .setTimestamp(new Date());
+      .setTimestamp(new Date()).then(botmsg => {botmsg.delete(5000)});
 
     message.channel.send({embed});
     return;

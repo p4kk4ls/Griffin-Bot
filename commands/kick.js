@@ -9,10 +9,8 @@ exports.run = (client, message, args) => {
     let embed = new Discord.RichEmbed()
       .setTitle('Specify a reason and user for a kick!')
       .setColor('#f22a0c')
-      .setFooter('Kick', client.user.avatarURL)
-      .setTimestamp(new Date());
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
 
@@ -20,20 +18,16 @@ exports.run = (client, message, args) => {
     let embed = new Discord.RichEmbed()
       .setTitle('Please specify any mentions.')
       .setColor('#f22a0c')
-      .setFooter('Kick', client.user.avatarURL)
-      .setTimestamp(new Date());
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
   if (!message.guild.member(user).kickable) {
     let embed = new Discord.RichEmbed()
       .setTitle('This user is not kickable for me!')
       .setColor('#f22a0c')
-      .setFooter('Kick', client.user.avatarURL)
-      .setTimestamp(new Date());
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
   message.guild.member(user).kick();

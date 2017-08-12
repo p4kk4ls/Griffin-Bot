@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
       .setTitle('Specify a reason for a ban!')
       .setColor('#f22a0c')
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
 
@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
       .setTitle('Please specify any mentions or userID\'s!')
       .setColor('#f22a0c')
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
 
@@ -28,7 +28,7 @@ exports.run = async (client, message, args) => {
       .setTitle('This user is not bannable for me!')
       .setColor('#f22a0c')
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
   

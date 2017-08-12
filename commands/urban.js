@@ -21,7 +21,6 @@ exports.run = (client, message, args) =>{
       .setDescription(urbaned.definition)
       .setColor('#17b3d6')
       .addField('Example', `${urbaned.example}.`)
-      .addField('Tags', urbaned.tags.join(' '))
       .setFooter(`${urbaned.urbanURL} | Likes: ${urbaned.thumbsUp} | Dislikes: ${urbaned.thumbsDown}`);
     message.channel.send({embed});
     console.log(urbaned.example)

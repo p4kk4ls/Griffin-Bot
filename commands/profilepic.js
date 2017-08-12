@@ -12,16 +12,12 @@ if (message.mentions.users.size < 1){let embed = new Discord.RichEmbed()
     let fakeLoadEmbed = new Discord.RichEmbed()
       .setAuthor('Searching....')
       .setColor('#f77a04')
-      .setFooter('ProfilePic', client.user.avatarURL)
-      .setTimestamp(new Date());
 
     let msg = await message.channel.send({embed: fakeLoadEmbed})
 
     let finishedEmbed = new Discord.RichEmbed()
       .setAuthor('Link', user.displayAvatarURL,user.displayAvatarURL)
       .setColor('#1bba31')
-      .setFooter('Profilepic', client.user.avatarURL)
-      .setTimestamp(new Date())
       .setImage(user.displayAvatarURL);
 
     await message.channel.send({embed: finishedEmbed})
