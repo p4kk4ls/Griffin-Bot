@@ -62,3 +62,4 @@ config.json
 Utils/muzak.js
 musicqueue.json
 Utils/FTG.js
+PerServer/
