@@ -4,7 +4,7 @@ const prefix = config.prefix;
 
 module.exports = (client) =>{
   client.on('ready', () => {
-    client.user.setUsername("Harold The Griffin")
+    client.user.setUsername('Elissa The Griffin');
 
     console.log(`${client.user.tag} is up in ${client.guilds.size} guilds, for ${client.users.size} users!\nFlight started at ${new Date()}\nUsing Gbot by Pesky12!`);
     client.user.setGame(`use ${prefix}help | Serving in: ${client.guilds.size} guilds! | pesky12.github.io/GryphonNest For source code and more info!`);
@@ -57,10 +57,11 @@ module.exports = (client) =>{
   client.on('roleCreate', (role) => {
     if (role.guild.channels.find('name', 'mod-log')) {
       let embed = new Discord.RichEmbed()
-        .setAuthor('New role has been created!')
+        .setAuthor(`Role '${role.name}'(${role.id}) has been created!`)
         .setDescription('For more info check the audit log')
+        .addField('Color', `${role.hexColor}`, true)
+        .addField('Hoist', `${role.hoist.toString}`, true)
         .setColor('#c4350d')
-        .setFooter('Role created', client.user.avatarURL)
         .setTimestamp(new Date());
       role.guild.channels.find('name', 'mod-log').send({embed});
     } else {
@@ -128,7 +129,7 @@ module.exports = (client) =>{
   });
 
   client.on('guildBanRemove', (guild, user) => {
-    if (role.guild.channels.find('name', 'mod-log')) {
+    if (guild.channels.find('name', 'mod-log')) {
       let embed = new Discord.RichEmbed()
         .setAuthor(`${user.name} has been unbanned!`)
         .setDescription('For more info check the audit log')
