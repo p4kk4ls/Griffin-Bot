@@ -17,7 +17,7 @@ exports.run = (client, message) =>{
     .setAuthor(message.author.username, message.author.displayAvatarURL)
     .setTitle(`Sent you a sandvich ${giveCookieto.username}!`)
     .setColor('#683e0d')
-    .setThumbnail('https://wiki.teamfortress.com/w/images/thumb/9/95/Sandvich.png');
+    .setThumbnail('https://wiki.teamfortress.com/w/images/thumb/9/95/Sandvich.png/250px-Sandvich.png?t=20111211152033');
   message.channel.send({embed});
 };
 
