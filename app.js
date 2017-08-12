@@ -6,15 +6,19 @@ const prefix = config.prefix;
 
 console.log(process.uptime())
 
+if (fs.existsSync('./Utils/require.js')) {
+require('./Utils/require.js')(client)
+}
 require('./Utils/events.js')(client)
 require('./Utils/onMessage.js')(client)
 if (fs.existsSync('./Utils/muzak.js')) {
 require('./Utils/muzak.js')(client)
 }
-
-//First Time Gamer Server commands
-if (fs.existsSync('./Utils/FTG.js')) {
-require('./Utils/FTG.js')(client)
+if (fs.existsSync('./PerServer/FirstTimeGamer/main.js')) {
+require('./PerServer/FirstTimeGamer/main.js')(client)
+}
+if (fs.existsSync('./PerServer/Overwatch Blanca/main.js')) {
+require('./PerServer/Overwatch Blanca/main')(client)
 }
 
 client.commands = new Discord.Collection
