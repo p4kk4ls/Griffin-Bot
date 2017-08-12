@@ -1,5 +1,5 @@
 exports.run = (client, message, args) =>{
-  message.channel.send('**H E L L O  I  A M  G R Y P H O N**');
+  message.channel.send('**H E L L O  I  A M  G R I F F I N**');
   return;
 };
 
