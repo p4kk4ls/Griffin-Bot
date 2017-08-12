@@ -63,3 +63,5 @@ Utils/muzak.js
 musicqueue.json
 Utils/FTG.js
 PerServer/
+Utils/AI.js
+Utils/require.js
