@@ -10,11 +10,11 @@ const prefix = config.prefix;
 
 console.log(process.uptime())
 
+require('./Utils/events.js')(client)
+require('./Utils/onMessage.js')(client)
 if (fs.existsSync('./Utils/require.js')) {
 require('./Utils/require.js')(client)
 }
-require('./Utils/events.js')(client)
-require('./Utils/onMessage.js')(client)
 
 console.log(`Emoji: ${client.emojis}`)
 
@@ -42,7 +42,7 @@ client.on('message', async (message) => {
   if(message.channel.type == 'dm') return;
   if(message.author.bot) return;
   if(!message.content.startsWith(prefix)) return;
-  if(message.channel.member(client.user).hasPermissions("SEND_MESSAGES"))
+//   if(message.channel.member(client.user).hasPermissions("SEND_MESSAGES"))
 
   let messageAray = message.content.split(' ');
   let command = messageAray[0];
