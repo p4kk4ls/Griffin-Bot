@@ -4,7 +4,7 @@ const prefix = config.prefix;
 
 module.exports = (client) =>{
   client.on('ready', () => {
-    client.user.setUsername('Elissa The Griffin');
+    client.user.setUsername('Elissa');
 
     console.log(`${client.user.tag} is up in ${client.guilds.size} guilds, for ${client.users.size} users!\nFlight started at ${new Date()}\nUsing Gbot by Pesky12!`);
     client.user.setGame(`use ${prefix}help | Serving in: ${client.guilds.size} guilds! | pesky12.github.io/GryphonNest For source code and more info!`);
@@ -17,27 +17,27 @@ module.exports = (client) =>{
     console.log(`Took: ${process.uptime()} seconds!`);
   });
 
-  client.on('guildUnavailable', (guild)=>{
-    let embed = new Discord.RichEmbed()
-      .setTitle(`Guild '${guild.name}' not availible!`)
-      .setColor('#ff7700')
-      .setFooter('Probalby some servers on Discord side died i hope im not going to skype in 10 minutes oh boi!', client.user.avatarURL)
-      .setTimestamp(new Date());
-    client.channels.get('331072865707360258').send({embed});
-  });
+  // client.on('guildUnavailable', (guild)=>{
+  //   let embed = new Discord.RichEmbed()
+  //     .setTitle(`Guild '${guild.name}' not availible!`)
+  //     .setColor('#ff7700')
+  //     .setFooter('Probalby some servers on Discord side died i hope im not going to skype in 10 minutes oh boi!', client.user.avatarURL)
+  //     .setTimestamp(new Date());
+  //   client.channels.get('331072865707360258').send({embed});
+  // });
 
-  client.on('roleUpdate', (oldRole, newRole) => {
-    if (oldRole.guild.channels.find('name', 'mod-log')) {
-      let embed = new Discord.RichEmbed()
-        .setAuthor(`Role '${oldRole.name}/${newRole.name}' has been updated`)
-        .setDescription('For more info check the audit log')
-        .setColor(newRole.hexColor)
-        .setTimestamp(new Date());
-      oldRole.guild.channels.find('name', 'mod-log').send({embed});
-    } else {
-      return;
-    }
-  });
+  // client.on('roleUpdate', (oldRole, newRole) => {
+  //   if (oldRole.guild.channels.find('name', 'mod-log')) {
+  //     let embed = new Discord.RichEmbed()
+  //       .setAuthor(`Role '${oldRole.name}/${newRole.name}' has been updated`)
+  //       .setDescription('For more info check the audit log')
+  //       .setColor(newRole.hexColor)
+  //       .setTimestamp(new Date());
+  //     oldRole.guild.channels.find('name', 'mod-log').send({embed});
+  //   } else {
+  //     return;
+  //   }
+  // });
 
   client.on('roleDelete', (role) => {
     if (role.guild.channels.find('name', 'mod-log')) {
@@ -45,9 +45,7 @@ module.exports = (client) =>{
         .setAuthor(`Role '${role.name}'(${role.id}) has been deleted!`)
         .setDescription('For more info check the audit log')
         .addField('Color', `${role.hexColor}`, true)
-        .addField('Hoist', `${role.hoist.toString}`, true)
-        .addField('Position', `${role.calculatedPosition}`, true)
-        .addField('Role Created at', `${role.createdTimestamp}`)
+        .addField('Role Created at', `${role.createdAt}`)
         .setColor(role.hexColor)
         .setTimestamp(new Date());
       role.guild.channels.find('name', 'mod-log').send({embed});
@@ -56,20 +54,19 @@ module.exports = (client) =>{
     }
   });
 
-  client.on('roleCreate', (role) => {
-    if (role.guild.channels.find('name', 'mod-log')) {
-      let embed = new Discord.RichEmbed()
-        .setAuthor(`Role '${role.name}'(${role.id}) has been created!`)
-        .setDescription('For more info check the audit log')
-        .addField('Color', `${role.hexColor}`, true)
-        .addField('Hoist', `${role.hoist.toString}`, true)
-        .setColor(role.hexColor)
-        .setTimestamp(new Date());
-      role.guild.channels.find('name', 'mod-log').send({embed});
-    } else {
-      return;
-    }
-  });
+  // client.on('roleCreate', (role) => {
+  //   if (role.guild.channels.find('name', 'mod-log')) {
+  //     let embed = new Discord.RichEmbed()
+  //       .setAuthor(`Role '${role.name}'(${role.id}) has been created!`)
+  //       .setDescription('For more info check the audit log')
+  //       .addField('Color', `${role.hexColor}`, true)
+  //       .setColor(role.hexColor)
+  //       .setTimestamp(new Date());
+  //     role.guild.channels.find('name', 'mod-log').send({embed});
+  //   } else {
+  //     return;
+  //   }
+  // });
 
   client.on('guildBanAdd', (guild, user) => {
     if (user.bot) return;
@@ -116,22 +113,22 @@ module.exports = (client) =>{
     }
   });
 
-  client.on('channelUpdate', (oldChannel, newChannel) => {
-    if(newChannel.type == 'dm') return;
-    if (oldChannel.guild.channels.find('name', 'mod-log')) {
-      let embed = new Discord.RichEmbed()
-        .setAuthor(`Channel #${oldChannel.name} | #${newChannel.name} has been updated!`)
-        .setDescription('For more info check the audit log')
-        .addField('Type', `${oldChannel.type}`,true)
-        .addField('ID', `${oldChannel.id}`,true)
-        .setColor('#c4350d')
-        .setFooter('Channel', client.user.avatarURL)
-        .setTimestamp(new Date());
-      oldChannel.guild.channels.find('name', 'mod-log').send({embed});
-    } else {
-      return;
-    }
-  });
+  // client.on('channelUpdate', (oldChannel, newChannel) => {
+  //   if(newChannel.type == 'dm') return;
+  //   if (oldChannel.guild.channels.find('name', 'mod-log')) {
+  //     let embed = new Discord.RichEmbed()
+  //       .setAuthor(`Channel #${oldChannel.name} | #${newChannel.name} has been updated!`)
+  //       .setDescription('For more info check the audit log')
+  //       .addField('Type', `${oldChannel.type}`,true)
+  //       .addField('ID', `${oldChannel.id}`,true)
+  //       .setColor('#c4350d')
+  //       .setFooter('Channel', client.user.avatarURL)
+  //       .setTimestamp(new Date());
+  //     oldChannel.guild.channels.find('name', 'mod-log').send({embed});
+  //   } else {
+  //     return;
+  //   }
+  // });
 
   client.on('channelDelete', (channel) => {
     if(channel.type == 'dm') return;
@@ -168,7 +165,6 @@ module.exports = (client) =>{
 
 
   client.on('guildMemberRemove', (member) => {
-    if (!member.client.hasPermisions("SEND_MESSAGES")) return;
     let embed = new Discord.RichEmbed()
       .setAuthor(`${member.user.username} just left.`, member.user.displayAvatarURL)
       .setDescription('👋 Did we say something wrong?')
@@ -177,7 +173,6 @@ module.exports = (client) =>{
   });
 
   client.on('guildMemberAdd', (member) => {
-    if (!member.client.hasPermisions("SEND_MESSAGES")) return;
     let embed = new Discord.RichEmbed()
       .setAuthor(`${member.user.username} welcome to our server!`, member.user.displayAvatarURL)
       .setDescription(`📥 C'mon everyone say hi to ${member.user.username}!`)
