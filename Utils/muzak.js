@@ -126,7 +126,7 @@ module.exports = (client) =>{
     let skip = new Discord.RichEmbed()
       .setAuthor('Skipped!!', 'https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png')
       .setColor('#f26b04')
-      .setFooter('Skipped by ${message.autho.tag}');
+      .setFooter(`Skipped by ${msg.author.tag}`);
     msg.channel.send({embed: skip});
   }
 
