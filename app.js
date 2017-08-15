@@ -38,11 +38,9 @@ fs.readdir("./commands/", (err, files) =>{
 
 
 client.on('message', async (message) => {
-  if (!message.guild.client.hasPermisions("SEND_MESSAGES")) return;
   if(message.channel.type == 'dm') return;
   if(message.author.bot) return;
   if(!message.content.startsWith(prefix)) return;
-//   if(message.channel.member(client.user).hasPermissions("SEND_MESSAGES"))
 
   let messageAray = message.content.split(' ');
   let command = messageAray[0];
