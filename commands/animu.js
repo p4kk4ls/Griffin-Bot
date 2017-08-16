@@ -8,7 +8,7 @@ exports.run = (client, message, args) =>{
   if (animename.length < 1){ 
     let embed = new Discord.RichEmbed()
       .setTitle('What anime i should find?')
-      .setColor('#d15b12')
+      .setColor('#d15b12');
 
     message.channel.send({embed});
     return;
@@ -29,10 +29,16 @@ exports.run = (client, message, args) =>{
         .addField('Score', result.anime[0].score, true)
         .addField('Status', result.anime[0].status, true)
         .addField('Start date', `${result.anime[0].start_date}`, true)
-        .addField('End date', result.anime[0].end_date, true)
+        .addField('End date', result.anime[0].end_date, true);
       message.channel.send({embed});
     })
-    .catch(err => console.log(err));
+    .catch(err =>{
+      let Searching = new Discord.RichEmbed()
+        .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
+        .setDescription('Try to be more specific.')
+        .setColor('#c40101');
+      message.channel.send({embed: Searching})
+      console.log(err);});
 };
 
 exports.help = {

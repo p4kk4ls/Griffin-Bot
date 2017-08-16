@@ -23,8 +23,13 @@ exports.run = (client, message, args) =>{
       .addField('Example', `${urbaned.example}.`)
       .setFooter(`${urbaned.urbanURL} | Likes: ${urbaned.thumbsUp} | Dislikes: ${urbaned.thumbsDown}`);
     message.channel.send({embed});
-    console.log(urbaned.example)
-  });
+  })
+    .catch(err =>{
+      let Searching = new Discord.RichEmbed()
+        .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
+        .setColor('#c40101');
+      message.channel.send({embed: Searching});
+      console.log(err);});
 };
 
 
