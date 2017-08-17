@@ -4,8 +4,6 @@ const prefix = config.prefix;
 
 module.exports = (client) =>{
   client.on('ready', () => {
-    client.user.setUsername('Elissa');
-
     console.log(`${client.user.tag} is up in ${client.guilds.size} guilds, for ${client.users.size} users!\nFlight started at ${new Date()}\nUsing Gbot by Pesky12!`);
     // client.user.setGame(`use ${prefix}help | Serving in: ${client.guilds.size} guilds!`);
     client.user.setPresence({ game: { name: `use ${prefix}help | Serving in: ${client.guilds.size} guilds!`, type: 0 } });
@@ -170,7 +168,19 @@ module.exports = (client) =>{
       .setAuthor(`${member.user.username} just left.`, member.user.displayAvatarURL)
       .setDescription('👋 Did we say something wrong?')
       .setColor('#c4350d');
-    member.guild.defaultChannel.send({embed});
+    if (member.guild.channels.find('name', 'general')){
+      member.guild.channels.find('name', 'general').send({embed});
+      return;
+    }
+    if (member.guild.defaultChannel){
+      member.guild.defaultChannel.send({embed});
+      return;
+    }
+    if (member.guild.channels.find('name', 'mod-log')){
+      member.guild.channels.find('name', 'mod-log').send({embed});
+      return;
+    }
+    else return;
   });
 
   client.on('guildMemberAdd', (member) => {
@@ -178,7 +188,19 @@ module.exports = (client) =>{
       .setAuthor(`${member.user.username} welcome to our server!`, member.user.displayAvatarURL)
       .setDescription(`📥 C'mon everyone say hi to ${member.user.username}!`)
       .setColor('#1bbc12');
-    member.guild.defaultChannel.send({embed});
+    if (member.guild.channels.find('name', 'general')){
+      member.guild.channels.find('name', 'general').send({embed});
+      return;
+    }
+    if (member.guild.defaultChannel){
+      member.guild.defaultChannel.send({embed});
+      return;
+    }
+    if (member.guild.channels.find('name', 'mod-log')){
+      member.guild.channels.find('name', 'mod-log').send({embed});
+      return;
+    }
+    else return;
   });
 
   client.on('warn', (warn)=>{
