@@ -8,27 +8,6 @@ exports.run = (client, message, args) =>{
     message.channel.send({embed});
     return;
   }
-//  if (!userChoice.startsWith('scissors')){ 
-//     let embed = new Discord.RichEmbed()
-//       .setTitle('👊 Rock, ✋Paper, ✌Scissors?')
-//       .setColor('#1c4bd8');
-//     message.channel.send({embed});
-//     return;
-//   }
-//   else if (!userChoice.startsWith('paper')){ 
-//     let embed = new Discord.RichEmbed()
-//       .setTitle('👊 Rock, ✋Paper, ✌Scissors?')
-//       .setColor('#1c4bd8');
-//     message.channel.send({embed});
-//     return;
-//   }
-//   else if (!userChoice.startsWith('rock')){ 
-//     let embed = new Discord.RichEmbed()
-//       .setTitle('👊 Rock, ✋ Paper, ✌ Scissors?')
-//       .setColor('#1c4bd8');
-//     message.channel.send({embed});
-//     return;
-//   }
   var computerChoice = Math.random();
   if (computerChoice <0.34){
     computerChoice = 'rock';

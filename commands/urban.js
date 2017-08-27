@@ -11,7 +11,7 @@ exports.run = (client, message, args) =>{
         .setFooter(`${urbaned.urbanURL} | Likes: ${urbaned.thumbsUp} | Dislikes: ${urbaned.thumbsDown}`);
       message.channel.send({embed});
     });
-    return
+    return;
   }
 
   let toUrban = args.join(' '); 
@@ -20,11 +20,16 @@ exports.run = (client, message, args) =>{
       .setAuthor(`Urban of "${urbaned.word}"`)
       .setDescription(urbaned.definition)
       .setColor('#17b3d6')
-      .addField('Example', urbaned.example)
-      .addField('Tags', urbaned.tags.join(' '))
+      .addField('Example', `${urbaned.example}.`)
       .setFooter(`${urbaned.urbanURL} | Likes: ${urbaned.thumbsUp} | Dislikes: ${urbaned.thumbsDown}`);
     message.channel.send({embed});
-  });
+  })
+    .catch(err =>{
+      let Searching = new Discord.RichEmbed()
+        .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
+        .setColor('#c40101');
+      message.channel.send({embed: Searching});
+      console.log(err);});
 };
 
 

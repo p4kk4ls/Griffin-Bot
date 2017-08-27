@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
       .setTitle('Specify a reason for a ban!')
       .setColor('#f22a0c')
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
 
@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
       .setTitle('Please specify any mentions or userID\'s!')
       .setColor('#f22a0c')
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
 
@@ -28,7 +28,7 @@ exports.run = async (client, message, args) => {
       .setTitle('This user is not bannable for me!')
       .setColor('#f22a0c')
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
   
@@ -68,6 +68,17 @@ const BannedPM = new Discord.RichEmbed()
     .addField(`And ${userToBan.tag} is gone`, `Check mod-log for more info.`, true)
     .setFooter('Ban', client.user.avatarURL);
 
+      const basicBanNoLog = new Discord.RichEmbed()
+    .setAuthor(message.author.username, message.author.avatarURL)
+    .setDescription('I recommend creating #mod-log channel!')
+    .setColor(0x00AE86)
+    .setTimestamp(new Date)
+    .addField('Action', 'Ban', true)
+    .addField('Moderator', `${message.author.tag}`, true)
+    .addField('Target', `${userToBan.tag}`, true)
+    .addField('Reason', `${reason}`, true)
+    .setFooter('Ban', client.user.avatarURL);
+
 
   if(message.guild.channels.find('name', 'mod-log')){
     message.channel.send({embed: channelModLog})
@@ -75,9 +86,9 @@ const BannedPM = new Discord.RichEmbed()
     message.guild.channels.find('name', 'mod-log').send({embed: basicBan})
     message.guild.owner.send({embed: BannedPM});
   } else {
-    message.channel.send({embed: basicBan});
+    message.channel.send({embed: basicBanNoLog});
     client.users.get(userToBan.id).send({embed: BannedPM});
-    message.guild.owner.send({embed: basicBan});
+    message.guild.owner.send({embed: basicBanNoLog});
   }
 };
 exports.help = {

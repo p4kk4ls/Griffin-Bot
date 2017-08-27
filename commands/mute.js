@@ -9,10 +9,8 @@ module.exports.run = async(client, message, args) =>{
       let embed = new Discord.RichEmbed()
         .setTitle('Please specify any mentions.')
         .setColor("#f22a0c")
-        .setFooter('Mute', client.user.avatarURL)
-        .setTimestamp(new Date());
 
-      message.channel.send({embed});
+      message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)})
       return
     }
 
@@ -28,13 +26,14 @@ module.exports.run = async(client, message, args) =>{
         .setTimestamp(new Date());
       let embedmodlog = new Discord.RichEmbed()
       .setAuthor(message.author.tag, message.author.displayAvatarURL)
-        .setTitle(`${userMute.username} has been muted in ${message.channel.name}! 🙊`)
+        .setTitle(`'${userMute.tag}' has been muted in '#${message.channel.name}' by '${message.author.tag}'! 🙊`)
         .setColor("#f22a0c")
         .setFooter('Mute', client.user.avatarURL)
         .setTimestamp(new Date());
-      message.channel.send({embed});
+      message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)})
+      message.delete(5000);
       message.guild.channels.find('name', 'mod-log').send({embed: embedmodlog})
-    }else {
+    } else {
       let embed = new Discord.RichEmbed()
         .setTitle(`${userMute.username} has been muted here! 🙊`)
         .setColor("#f22a0c")

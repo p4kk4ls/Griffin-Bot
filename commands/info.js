@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
-exports.run = (client, message, args) =>{
+exports.run = (client, message) =>{
   let embed = new Discord.RichEmbed()
     .setTitle(`Infoboard for ${client.user.username}`)
     .setDescription('Here is some info about this bot!!')
-    .addField('Uptime', `${process.uptime()} Seconds`,true)
-    .addField('Code Author', client.users.get('235047463017381888').tag, true)
+    .addField('Uptime', `${client.uptime()} Seconds`,true)
+    .addField('Code Creator', client.users.get('235047463017381888').tag, true)
     .setColor('#7f16ff')
     .setThumbnail(client.user.avatarURL);
   message.channel.send({embed});
@@ -13,6 +13,6 @@ exports.run = (client, message, args) =>{
 235047463017381888;
 exports.help = {
   name: 'info',
-  description: '🔧 Shows info about the bot with links!',
+  description: '🔧 Shows info about the bot! :3',
   usage: 'info'
 };

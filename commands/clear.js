@@ -14,6 +14,7 @@ exports.run = (client, message, args) =>{
     .setTitle(`Deleted ${number}`)
     .setColor(0x00AE86);
   message.channel.send({embed: embedDelete}).then(botmsg => botmsg.delete(5000))
+  message.delete()
   return;
 };
 

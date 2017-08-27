@@ -1,4 +1,4 @@
-const Discord = module.require('discord.js');
+const Discord = require('discord.js');
 
 exports.run = async(client, message, args) =>{
 
@@ -12,7 +12,7 @@ exports.run = async(client, message, args) =>{
         .setFooter('Unmute', client.user.avatarURL)
         .setTimestamp(new Date());
 
-      message.channel.send({embed});
+      message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     }
 
     try{
