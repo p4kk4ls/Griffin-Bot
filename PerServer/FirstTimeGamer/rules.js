@@ -13,12 +13,12 @@ module.exports = (client) => {
   client.on('message', message => {
     if(message.channel.id !== newChannel) return;
     if(message.content.startsWith('#understand')){
-      let roleNew = message.guild.roles.get('343778339711877120')
+      let roleNew = message.guild.roles.get('343778339711877120');
       let roleMem = message.guild.roles.get('343548892450783233');
       message.member.addRole(roleMem);
-      message.member.removeRole(roleNew)
+      message.member.removeRole(roleNew);
       client.channels.get(roleChannel).send(`<@${message.author.id}> is now a member!`);
-      return
+      return;
     }
   });
 };
