@@ -22,10 +22,6 @@ module.exports = (client) =>{
           return skip(msg, args);
         case 'queue':
           return queue(msg, args);
-        case 'pause':
-          return pause(msg, args);
-        case 'resume':
-          return resume(msg, args);
         case 'leave':
           return leave(msg, args);
       }
@@ -121,7 +117,6 @@ module.exports = (client) =>{
     queue.splice(0, toSkip - 1);
 
     const dispatcher = voiceConnection.player.dispatcher;
-    if (voiceConnection.paused) dispatcher.resume();
     dispatcher.end();
     let skip = new Discord.RichEmbed()
       .setAuthor('Skipped!!', 'https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png')
@@ -137,11 +132,6 @@ module.exports = (client) =>{
     )).join('\n');
 
     let queueStatus = 'Stopped';
-    const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
-    if (voiceConnection !== null) {
-      const dispatcher = voiceConnection.player.dispatcher;
-      queueStatus = dispatcher.paused ? 'Paused' : 'Playing';
-    }
     let Queue = new Discord.RichEmbed()
       .setAuthor(`Queue ('${queueStatus}')`, 'https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/list-circle-blue-128.png')
       .setColor('#0a9cd1')
@@ -150,30 +140,6 @@ module.exports = (client) =>{
     msg.channel.send({embed: Queue});
   }
 
-  function pause(msg) {
-    // Get the voice connection.
-    const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
-    if (voiceConnection === null) {
-      let NoSkip = new Discord.RichEmbed()
-        .setAuthor('Im not playing anything!!', 'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
-        .setColor('#f26b04');
-      msg.channel.send({embed: NoSkip}).then((botmsg) =>{
-        botmsg.delete(5000);
-      });
-      return;
-    }
-
-    if (!isAdmin(msg.member))
-      return msg.channel.send('You are not authorized to use this.');
-
-    let pause = new Discord.RichEmbed()
-      .setAuthor('Paused', 'https://freeiconshop.com/wp-content/uploads/edd/pause-flat.png')
-      .setColor('#0a9cd1')
-      .setFooter('Paused by ${message.author.tag}');
-    msg.channel.send({embed: pause});
-    const dispatcher = voiceConnection.player.dispatcher;
-    if (!dispatcher.paused) dispatcher.pause();
-  }
 
   function leave(msg) {
     if (isAdmin(msg.member)) {
@@ -195,31 +161,6 @@ module.exports = (client) =>{
     } else {
       msg.channel.send('You don\'t have permission to use that command ya twat!');
     }
-  }
-
-  function resume(msg) {
-
-    const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
-    if (voiceConnection === null) {
-      let NoSkip = new Discord.RichEmbed()
-        .setAuthor('Im not playing anything!!', 'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
-        .setColor('#f26b04');
-      msg.channel.send({embed: NoSkip}).then((botmsg) =>{
-        botmsg.delete(5000);
-      });
-      return;
-    }
-
-    if (!isAdmin(msg.member))
-      return msg.channel.send('You don\'t have permission to use that command ya twat!');
-
-    let pause = new Discord.RichEmbed()
-      .setAuthor('Resumed', 'http://www.emclient.com/homepage-new/assets/img/icons/play_button.png')
-      .setColor('#0a9cd1')
-      .setFooter('Resumed by ${message.author.tag}');
-    msg.channel.send({embed: pause});
-    const dispatcher = voiceConnection.player.dispatcher;
-    if (dispatcher.paused) dispatcher.resume();
   }
 
   function executeQueue(msg, queue) {
