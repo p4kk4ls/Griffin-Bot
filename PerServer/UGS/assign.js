@@ -5,7 +5,7 @@ let guildID = '349630476496928769';
 module.exports = (client) => {
   client.on('message', message => {
     let messageAray = message.content.split(' | ');
-
+    if(message.type = 'dm') return;
     if (message.guild.id !== guildID) return;
     if (message.content.startsWith('assign~')){
       let title = messageAray[0].slice(6);

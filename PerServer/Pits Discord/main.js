@@ -6,6 +6,7 @@ console.log('lol');
 
 module.exports = (client) => {
   client.on('message', (message) => {
+    if(message.type = 'dm') return;
     let helpRole = message.guild.roles.get('name', 'help');
 
     if (message.guild.id !== serverID) return;
