@@ -17,7 +17,6 @@ require('./Utils/require.js')(client)
 }
 
 console.log(`Emoji: ${client.emojis}`)
-
 client.commands = new Discord.Collection
 
 fs.readdir("./commands/", (err, files) =>{
