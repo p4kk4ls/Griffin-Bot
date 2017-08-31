@@ -6,6 +6,7 @@ const guildID = '331072774112018433';
 module.exports = (client) => {
   console.log('AI READY TO ROLL');
   client.on('message', (message) =>{
+    if (message.type = 'dm') return;
     if (message.author.bot) return;
     if (message.mentions.users.first() !== client.user) return;
     if (message.guild.id !== guildID) return;

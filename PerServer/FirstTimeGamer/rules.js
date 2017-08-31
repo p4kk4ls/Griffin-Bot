@@ -11,6 +11,7 @@ module.exports = (client) => {
     member.addRole(roleNew);
   });
   client.on('message', message => {
+    if(message.type = 'dm') return;
     if(message.channel.id !== newChannel) return;
     if(message.content.startsWith('#understand')){
       let roleNew = message.guild.roles.get('343778339711877120');
