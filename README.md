@@ -10,7 +10,7 @@ Want to host this bot yourself? Ok, this instructions will guide you through the
 ### What do I need?
 
 You need:
-
+test
 ```
 The current version of NodeJS (Not LTS!!)
 ```
