@@ -4,18 +4,20 @@ const client = new Discord.Client({    disableEveryone:true,  });
 const fs = require('fs');
 
 if (fs.existsSync('./config-local.json')) {
-    const config = require('./config-local.json');
+    var config = require('./config-local.json');
+    console.log('Detected Local Config')
 } else {
-    const config = require('./config-server.json');
+    var config = require('./config-server.json');
+    console.log('Detected Server Config')
 }
 
 const prefix = config.prefix;
 
 console.log(process.uptime())
 
-require('./Utils/events.js')(client)
-require('./Utils/onMessage.js')(client)
-require('./Utils/require.js')(client)
+require('./Utils/events.js')(client, config)
+require('./Utils/onMessage.js')(client, config)
+require('./Utils/require.js')(client, config)
 
 client.commands = new Discord.Collection
 
@@ -47,7 +49,7 @@ client.on('message', async (message) => {
 
   let cmd = client.commands.get(command.slice(prefix.length))
   if(cmd) {
-  cmd.run(client, message, args)
+  cmd.run(client, message, args, config)
   console.log(`┌─────────────────────\n|${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'\n└─────────────────────`)
   let embed = new Discord.RichEmbed()
       .setAuthor(message.author.username, message.author.displayAvatarURL)
