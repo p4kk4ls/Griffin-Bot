@@ -1,13 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({    disableEveryone:true,  });
 
+const fs = require('fs');
 
 if (fs.existsSync('./config-local.json')) {
     const config = require('./config-local.json');
 } else {
     const config = require('./config-server.json');
 }
-const fs = require('fs');
 
 const prefix = config.prefix;
 
