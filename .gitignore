@@ -51,5 +51,5 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-config.json
 .eslintrc.json
+config-local.json
