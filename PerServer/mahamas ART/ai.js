@@ -4,7 +4,6 @@ const app = apiai('3477c5f2f6e1489d8c5caae7ca7a8272');
 const guildID = '331072774112018433';
 
 module.exports = (client) => {
-  console.log('AI READY TO ROLL');
   client.on('message', (message) =>{
     if (message.type = 'dm') return;
     if (message.author.bot) return;

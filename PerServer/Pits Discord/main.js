@@ -2,8 +2,6 @@ const Discord = require('discord.js');
 
 const serverID = '264322700451774464';
 
-console.log('lol');
-
 module.exports = (client) => {
   client.on('message', (message) => {
     if(message.type = 'dm') return;

@@ -1,14 +1,8 @@
 const Discord = require('discord.js')
 
 module.exports.run = async(client, message, args) =>{
-    let user = message.mentions.users.first();
-    if (message.mentions.users.size < 1){let embed = new Discord.RichEmbed()
-      .setTitle('Please mention a user!')
-      .setColor('#f22a0c')
+    let user = message.mentions.users.first() || message.author
 
-    message.channel.send({embed});
-    return;
-  }
     var userstatus = user.presence.status
     if(userstatus == 'online'){var userstatus = "Online"}
     if(userstatus == 'offline'){var userstatus = "Offline"}

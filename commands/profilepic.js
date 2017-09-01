@@ -1,14 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports.run = async(client, message, args) =>{
-let user = message.mentions.users.first();
-if (message.mentions.users.size < 1){let embed = new Discord.RichEmbed()
-      .setTitle('Please mention a user!')
-      .setColor('#f22a0c')
-
-    message.channel.send({embed});
-    return;
-  }
+  let user = message.mentions.users.first() || message.author
     let fakeLoadEmbed = new Discord.RichEmbed()
       .setAuthor('Searching....')
       .setColor('#f77a04')
