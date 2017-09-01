@@ -4,8 +4,7 @@ const prefix = config.prefix;
 
 module.exports = (client) =>{
   client.on('ready', () => {
-    console.log(client.generateInvite("ADMINISTRATOR"))
-    console.log(`${client.user.tag} is up in ${client.guilds.size} guilds, for ${client.users.size} users!\nFlight started at ${new Date()}\nUsing Gbot by Pesky12!`);
+    console.log(`└──────────────────────────────────────┘\n\n┌──────────────────────────────────────────────────────────────────────────┐\n|${client.user.tag} is up in ${client.guilds.size} guilds, for ${client.users.size} users!\n|Flight started at ${new Date()}\n|Using Gbot by Pesky12!\n└──────────────────────────────────────────────────────────────────────────┘`);
     // client.user.setGame(`use ${prefix}help | Serving in: ${client.guilds.size} guilds!`);
     client.user.setPresence({ game: { name: `use ${prefix}help | Serving in: ${client.guilds.size} guilds!`, type: 0 } });
     let embed = new Discord.RichEmbed()
@@ -14,7 +13,7 @@ module.exports = (client) =>{
       .setFooter('Restart', client.user.avatarURL)
       .setTimestamp(new Date());
     client.channels.get('331072865707360258').send({embed});
-    console.log(`Took: ${process.uptime()} seconds!`);
+    console.log(`┌────────────────────┐\n|Took: ${process.uptime()} seconds!|\n└────────────────────┘`);
   });
 
   // client.on('guildUnavailable', (guild)=>{

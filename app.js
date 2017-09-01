@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client({
-    disableEveryone:true,  
-});
+const client = new Discord.Client({    disableEveryone:true,  });
 
 const config = require('./config.json');
 const fs = require('fs');
@@ -12,11 +10,8 @@ console.log(process.uptime())
 
 require('./Utils/events.js')(client)
 require('./Utils/onMessage.js')(client)
-if (fs.existsSync('./Utils/require.js')) {
 require('./Utils/require.js')(client)
-}
 
-console.log(`Emoji: ${client.emojis}`)
 client.commands = new Discord.Collection
 
 fs.readdir("./commands/", (err, files) =>{
@@ -27,10 +22,10 @@ fs.readdir("./commands/", (err, files) =>{
         return
     }
 
-    console.log(`Im trying to load ${filesjs.length} commands, hold up!`)
+    console.log(`\n┌──────────────────────────────────────┐\n|Im trying to load ${filesjs.length} commands, hold up!`)
     filesjs.forEach((f, i) => {
         let file = require(`./commands/${f}`)
-        console.log(`${i + 1}: ${f} ready to fly!`)
+        console.log(`|${i + 1}: ${f} ready to fly!`)
         client.commands.set(file.help.name, file);
     })
 })
@@ -48,10 +43,10 @@ client.on('message', async (message) => {
   let cmd = client.commands.get(command.slice(prefix.length))
   if(cmd) {
   cmd.run(client, message, args)
-  console.log(`${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'`)
+  console.log(`┌─────────────────────\n|${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'\n└─────────────────────`)
   let embed = new Discord.RichEmbed()
       .setAuthor(message.author.username, message.author.displayAvatarURL)
-      .setDescription(`${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'`)
+      .setDescription(`\n|${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'\n`)
       .setColor('#ff7700')
       .setFooter('Logging', client.user.avatarURL)
       .setTimestamp(new Date());
