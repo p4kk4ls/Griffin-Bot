@@ -10,8 +10,8 @@ exports.run = (client, message, args) =>{
   }).then(messages => {
     message.channel.bulkDelete(messages);
   });
-  let embedDelete = new Discord.RichEmbed
-    .setTitle(`Deleted ${number}`)
+  let embedDelete = new Discord.RichEmbed()
+    .setAuthor(`Deleted ${number} messages`)
     .setColor(0x00AE86);
   message.channel.send({embed: embedDelete}).then(botmsg => botmsg.delete(5000));
   message.delete();
