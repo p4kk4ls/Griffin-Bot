@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
 const mal = require('MALjs');
-const config = require('../config.json');
 const he = require('he');
-var api = new mal(config.MALlogin, config.MALpass);
-exports.run = (client, message, args) =>{
+
+exports.run = (client, message, args, config) =>{
+  var api = new mal(config.MALlogin, config.MALpass);
   let animename = args.join(' ');
   if (animename.length < 1){ 
     let embed = new Discord.RichEmbed()

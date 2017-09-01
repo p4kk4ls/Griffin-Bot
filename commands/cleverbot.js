@@ -1,9 +1,8 @@
 const Discord = require('discord.js');
 
-module.exports.run = async(client, message, args) => {
+module.exports.run = async(client, message, args, config) => {
     const Cleverbot = require('cleverbot-node');
     const clbot = new Cleverbot;
-    const config = require('../config.json')
 
     clbot.configure({ botapi: config.clevertoken });
 

@@ -1,12 +1,10 @@
 const Discord = require('discord.js');
-const config = require('../config.json');
-const prefix = config.prefix;
 
-module.exports = (client) =>{
+module.exports = (client, config) =>{
   client.on('ready', () => {
     console.log(`└──────────────────────────────────────┘\n\n┌──────────────────────────────────────────────────────────────────────────┐\n|${client.user.tag} is up in ${client.guilds.size} guilds, for ${client.users.size} users!\n|Flight started at ${new Date()}\n|Using Gbot by Pesky12!\n└──────────────────────────────────────────────────────────────────────────┘`);
     // client.user.setGame(`use ${prefix}help | Serving in: ${client.guilds.size} guilds!`);
-    client.user.setPresence({ game: { name: `use ${prefix}help | Serving in: ${client.guilds.size} guilds!`, type: 0 } });
+    client.user.setPresence({ game: { name: `use ${config.prefix}help | Serving in: ${client.guilds.size} guilds!`, type: 0 } });
     let embed = new Discord.RichEmbed()
       .setTitle('I have been restarted')
       .setColor('#ff7700')
