@@ -1,9 +1,4 @@
-const Discord = require('discord.js');
-const config = require('../config.json');
-const prefix = config.prefix;
-
-
-module.exports = (client) =>{
+module.exports = (client, config) =>{
   client.on('message', message => {
 
     if (responseObject[message.content]) {

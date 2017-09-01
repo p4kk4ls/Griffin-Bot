@@ -1,10 +1,9 @@
 const YoutubeDL = require('youtube-dl');
 const ytdl = require('ytdl-core');
 const Discord = require('discord.js');
-const config = require('../config.json');
-const prefix = config.prefix;
 
-module.exports = (client) =>{
+module.exports = (client, config) =>{
+  const prefix = config.prefix;
   let queues = {};
 
   client.on('message', msg => {
