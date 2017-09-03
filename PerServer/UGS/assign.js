@@ -5,7 +5,6 @@ console.log('UGS assign Loaded');
 
 module.exports = (client) => {
   client.on('message', message => {
-    console.log('hell')
     let messageAray = message.content.split(' | ');
     if (message.channel.type !== 'text') return;
     if (message.content.startsWith('~assign')){
