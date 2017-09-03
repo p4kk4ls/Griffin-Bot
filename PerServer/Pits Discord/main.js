@@ -4,7 +4,7 @@ const serverID = '264322700451774464';
 
 module.exports = (client) => {
   client.on('message', (message) => {
-    if(message.type = 'dm') return;
+    if (message.channel.type !== 'text') return;
     let helpRole = message.guild.roles.get('name', 'help');
 
     if (message.guild.id !== serverID) return;
