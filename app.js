@@ -39,7 +39,7 @@ fs.readdir("./commands/", (err, files) =>{
 
 
 client.on('message', async (message) => {
-  if(message.channel.type == 'dm') return;
+  if (message.channel.type !== 'text') return;
   if(message.author.bot) return;
   if(!message.content.startsWith(prefix)) return;
 
