@@ -19,21 +19,21 @@ exports.run = (client, message) =>{
     // //=> false 
     console.log(translated);
     if(translated.from.text.didYouMean || translated.from.text.autoCorrected){
-      var embed = new Discord.RichEmbed()
+      let embed = new Discord.RichEmbed()
         .setAuthor(`Translate: ${toTranslate}`, 'http://icons.iconarchive.com/icons/marcus-roberto/google-play/512/Google-Translate-icon.png')
         .addField('From:', translated.from.language.iso, true)
         .addField('To:', langTo, true)
         .addField('Did you mean?', translated.from.text.value)
         .addField('Output', translated.text, true);
-        return
+      return;
     }else{
-      var embed = new Discord.RichEmbed()
+      let embed = new Discord.RichEmbed()
         .setAuthor(`Translate: ${toTranslate}`, 'http://icons.iconarchive.com/icons/marcus-roberto/google-play/512/Google-Translate-icon.png')
         .addField('From:', translated.from.language.iso, true)
         .addField('To:', langTo, true)
         .addField('Output', translated.text, true);
-        message.channel.send({embed});
-        return
+      message.channel.send({embed});
+      return;
     }
   }).catch(err => {
     console.error(err);
