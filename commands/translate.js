@@ -25,18 +25,23 @@ exports.run = (client, message) =>{
         .addField('To:', langTo, true)
         .addField('Did you mean?', translated.from.text.value)
         .addField('Output', translated.text, true);
-    }
-
-    if(translated.from.text.autoCorrected){
+        return
+    }else{
       var embed = new Discord.RichEmbed()
         .setAuthor(`Translate: ${toTranslate}`, 'http://icons.iconarchive.com/icons/marcus-roberto/google-play/512/Google-Translate-icon.png')
         .addField('From:', translated.from.language.iso, true)
         .addField('To:', langTo, true)
         .addField('Output', translated.text, true);
+        message.channel.send({embed});
+        return
     }
-    message.channel.send({embed})
   }).catch(err => {
     console.error(err);
+    let errorEmbed = new Discord.RichEmbed()
+      .setTitle('google-translate-api')
+      .setDescription(`ERROR: ${err}`)
+      .setTimestamp(new Date());
+    client.channels.get('333727164937666562').send({embed: errorEmbed});
   });
 };
 
