@@ -13,7 +13,10 @@ module.exports = (client, config) =>{
         message.channel.send('I dont know where he is');
         console.log('Where is my son?');
       }
-
+    }
+    if (message.content.startsWith('Where is my son?')){
+      if(message.channel.default) return;
+      message.channel.send('Mee6 is a friendly helper that will help you with your everyday tasks and dissapear when his task is fufiled. But KEEP IT SIMPLE!! This is a photo of a Mee6:', {files: '../img/mee6.PNG'});
     }
 
     // I  A M  G R Y P H O N
@@ -104,7 +107,7 @@ module.exports = (client, config) =>{
     'what is life?': 'Just a weird anime.',
 
     'memes': 'My name jeff',
-    'memes': 'My name jeff',
+    'Memes': 'My name jeff',
     'memez': 'My name jeff',
     'MEME': 'My name jeff',
     'MEMES': 'My name jeff',
@@ -124,7 +127,7 @@ module.exports = (client, config) =>{
 
     'Who is a good gryphon?': 'ME!!',
     'who is a good gryphon?': 'ME!!',
-    'Who is a good gryphon': 'ME!!',
+    'who is a good gryphon': 'ME!!',
     'Who is a good gryphon': 'ME!!',
 
     'Steam Punk Giraffe': 'Thats my jam!',
