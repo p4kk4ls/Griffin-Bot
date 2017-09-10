@@ -67,7 +67,11 @@ module.exports = (client, config) =>{
         if (err || info.format_id === undefined || info.format_id.startsWith('0')) {
           botmsg.delete();
           msg.channel.send({embed: Searching});
-          client.channels.get('333727164937666562').send(`${new Date()} MusicBot: ${err}`);
+          let errorEmbed = new Discord.RichEmbed()
+            .setTitle('Music Bot')
+            .setDescription(`ERROR: ${err}`)
+            .setTimestamp(new Date());
+          client.channels.get('333727164937666562').send({embed: errorEmbed});
           return;
         }
         console.log(videoname);
@@ -178,6 +182,11 @@ module.exports = (client, config) =>{
             resolve(connection);
           }).catch((error) => {
             console.log(error);
+            let errorEmbed = new Discord.RichEmbed()
+              .setTitle('Music bot')
+              .setDescription(`ERROR: ${error}`)
+              .setTimestamp(new Date());
+            client.channels.get('333727164937666562').send({embed: errorEmbed});
           });
         } else {
           queue.splice(0, queue.length);
@@ -202,6 +211,11 @@ module.exports = (client, config) =>{
         connection.on('error', (error) => {
           // Skip to the next song.
           console.log(error);
+          let errorEmbed = new Discord.RichEmbed()
+            .setTitle('Music Bot')
+            .setDescription(`ERROR: ${error}`)
+            .setTimestamp(new Date());
+          client.channels.get('333727164937666562').send({embed: errorEmbed});
           queue.shift();
           executeQueue(msg, queue);
         });
@@ -209,6 +223,11 @@ module.exports = (client, config) =>{
         dispatcher.on('error', (error) => {
           // Skip to the next song.
           console.log(error);
+          let errorEmbed = new Discord.RichEmbed()
+            .setTitle('Music Bot')
+            .setDescription(`ERROR: ${error}`)
+            .setTimestamp(new Date());
+          client.channels.get('333727164937666562').send({embed: errorEmbed});
           queue.shift();
           executeQueue(msg, queue);
         });
@@ -226,9 +245,19 @@ module.exports = (client, config) =>{
         });
       }).catch((error) => {
         console.log(error);
+        let errorEmbed = new Discord.RichEmbed()
+          .setTitle('Music Bot')
+          .setDescription(`ERROR: ${error}`)
+          .setTimestamp(new Date());
+        client.channels.get('333727164937666562').send({embed: errorEmbed});
       });
     }).catch((error) => {
       console.log(error);
+      let errorEmbed = new Discord.RichEmbed()
+        .setTitle('google-translate-api')
+        .setDescription(`ERROR: ${error}`)
+        .setTimestamp(new Date());
+      client.channels.get('333727164937666562').send({embed: errorEmbed});
     });
   }
 };

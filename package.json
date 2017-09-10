@@ -18,6 +18,7 @@
     "cleverbot.io": "^1.0.4",
     "discord.js": "^11.1.0",
     "ffmpeg-binaries": "3.2.2-3",
+    "google-translate-api": "^2.3.0",
     "he": "^1.1.1",
     "jimp": "^0.2.28",
     "mc-utils": "^1.0.6",
