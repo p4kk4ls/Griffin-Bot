@@ -18,6 +18,6 @@ exports.run = (client, message) =>{
 
 exports.help = {
   name: 'cat',
-  description: 'Tells you a cat fact and sends a random cat picture.',
+  description: '😺Tells you a cat fact and sends a random cat picture.',
   usage: 'cat'
 };
