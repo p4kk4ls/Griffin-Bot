@@ -39,6 +39,7 @@ module.exports = (client, config) =>{
   }
 
   function play(msg, args) {
+    console.log(queues)
     if (msg.member.voiceChannel === undefined) return msg.channel.send('You\'re not in a voice channel.');
 
     if (!args) return msg.channel.send('I need the name of the song!!');
@@ -120,6 +121,7 @@ module.exports = (client, config) =>{
     queue.splice(0, toSkip - 1);
 
     const dispatcher = voiceConnection.player.dispatcher;
+    if(!dispatcher.end) return;
     dispatcher.end();
     let skip = new Discord.RichEmbed()
       .setAuthor('Skipped!!', 'https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png')
@@ -173,6 +175,7 @@ module.exports = (client, config) =>{
       const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
       if (voiceConnection !== null) return voiceConnection.disconnect();
     }
+    const queueso = getQueue(msg.guild.id);
 
     new Promise((resolve, reject) => {
       const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
