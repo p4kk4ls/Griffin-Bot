@@ -182,9 +182,15 @@ module.exports = (client, config) =>{
   });
 
   client.on('guildMemberAdd', (member) => {
+    var randomGreetings = [
+      'foobar',
+      'bar'
+  ];
+  var randomNumber = Math.floor(Math.random()*randomGreetings.length);
+  
+  
     let embed = new Discord.RichEmbed()
-      .setAuthor(`${member.user.username} welcome to our server!`, member.user.displayAvatarURL)
-      .setDescription(`📥 C'mon everyone say hi to ${member.user.username}!`)
+      .setAuthor(randomGreetings[randomNumber], member.user.displayAvatarURL)
       .setColor('#1bbc12');
     if (member.guild.channels.find('name', 'general')){
       member.guild.channels.find('name', 'general').send({embed});
