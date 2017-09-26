@@ -183,10 +183,12 @@ module.exports = (client, config) =>{
 
   client.on('guildMemberAdd', (member) => {
     var randomGreetings = [
-      'foobar',
-      'bar'
-  ];
-  var randomNumber = Math.floor(Math.random()*randomGreetings.length);
+      `Welcome ${member.user.tag}! Sit by the fire and enjoy the fireworks.`,
+      `55 to our server ${member.user.tag}`,
+      `${member.user.tag} is too OP pls nerf`,
+      `${member.user.tag} suddenly teleported here!`,
+    ];
+    var randomNumber = Math.floor(Math.random()*randomGreetings.length);
   
   
     let embed = new Discord.RichEmbed()
