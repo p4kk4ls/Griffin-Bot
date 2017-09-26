@@ -55,11 +55,11 @@ module.exports = (client, config) =>{
     msg.channel.send({embed: Searching}).then(botmsg => {
       var videoname = args;
 
-      if (!args.toLowerCase().startsWith('http')) {
+      if (!args.toLowerCase().startsWith('http') || !args.toLowerCase().startsWith('www.')) {
         videoname = 'gvsearch1:' + args;
       }
 
-      YoutubeDL.getInfo(videoname, ['-q', '--no-warnings'], (err, info) => {
+      YoutubeDL.getInfo(videoname, ['-q', '--no-warnings'],{maxBuffer: Infinity}, (err, info) => {
         let Searching = new Discord.RichEmbed()
           .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
           .setDescription('Try to use direct link.')
