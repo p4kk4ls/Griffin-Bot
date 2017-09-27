@@ -39,7 +39,7 @@ module.exports = (client, config) =>{
   }
 
   function play(msg, args) {
-    console.log(queues)
+    console.log(queues);
     if (msg.member.voiceChannel === undefined) return msg.channel.send('You\'re not in a voice channel.');
 
     if (!args) return msg.channel.send('I need the name of the song!!');

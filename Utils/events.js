@@ -186,7 +186,7 @@ module.exports = (client, config) =>{
       `Welcome ${member.user.tag}! Sit by the fire and enjoy the fireworks.`,
       `55 to our server ${member.user.tag}`,
       `${member.user.tag} is too OP pls nerf`,
-      `${member.user.tag} suddenly teleported here!`,
+      `${member.user.tag} suddenly teleported here!`
     ];
     var randomNumber = Math.floor(Math.random()*randomGreetings.length);
   
@@ -219,14 +219,36 @@ module.exports = (client, config) =>{
     client.channels.get('331072865707360258').send({embed});
   });
 
-//BETTER NOT LOL
-// client.on('debug', (debug)=>{
-//   let embed = new Discord.RichEmbed()
-//       .setTitle('DISCORD API WARN')
-//       .setDescription('Log', debug)
-//       .setColor('#ff7700')
-//       .setFooter('DEBUG SPAM BOI!!!!')
-//       .setTimestamp(new Date());
-//   client.channels.get("331072865707360258").send({embed});
-// })
+  //BETTER NOT LOL
+  // client.on('debug', (debug)=>{
+  //   let embed = new Discord.RichEmbed()
+  //       .setTitle('DISCORD API WARN')
+  //       .setDescription('Log', debug)
+  //       .setColor('#ff7700')
+  //       .setFooter('DEBUG SPAM BOI!!!!')
+  //       .setTimestamp(new Date());
+  //   client.channels.get("331072865707360258").send({embed});
+  // })
+  // surprise(sendBdayMessage);
+
+  // function sendBdayMessage(){
+  //   var Bdayembed = new Discord.RichEmbed()
+  //     .setAuthor('Happy birtday Pesky!!')
+  //     .setFooter('this is the most depressing function i ever did');
+  //   client.channels.get('351459309928054794').send({embed: Bdayembed});
+  //   console.log("i have a sad life")
+  // }
+
+  // function surprise(cb) {
+  //   (function loop() {
+  //     var now = new Date();
+  //     if (now.getDate() === 27 && now.getMonth() === 9 && now.getHours() === 22 && now.getMinutes() === 13) {
+  //       cb();
+  //     }
+  //     console.log('lol nope');
+  //     now = new Date();
+  //     var delay = 60000 - (now % 60000);
+  //     setTimeout(loop, delay);
+  //   })();
+  // }
 };
