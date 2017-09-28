@@ -187,7 +187,7 @@ module.exports = (client, config) =>{
   });
 
   client.on('guildMemberAdd', (member) => {
-    var greetings = randomGreetings[randomNumber];
+    var greetings;
     if(member.user.id == '252890173820370945'){
       greetings = 'Welcome our god Erin';
     } else if(member.user.id == '235047463017381888'){
