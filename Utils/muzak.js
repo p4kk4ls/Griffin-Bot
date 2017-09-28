@@ -74,7 +74,7 @@ module.exports = (client, config) =>{
             .setDescription(`ERROR: ${err}`)
             .setTimestamp(new Date());
           client.channels.get('333727164937666562').send({embed: errorEmbed});
-          console.log(errString)
+          console.log(err)
           return;
         }
         console.log(videoname);
