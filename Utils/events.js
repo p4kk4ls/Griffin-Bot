@@ -2,6 +2,11 @@ const Discord = require('discord.js');
 
 module.exports = (client, config) =>{
   client.on('ready', () => {
+    // var Bdayembed = new Discord.RichEmbed()
+    //   .setAuthor('Happy birtday Pesky!!')
+    //   .setFooter('this is the most depressing function i ever did');
+    // client.channels.get('351459309928054794').send({embed: Bdayembed});
+    // console.log('i have a sad life');
     console.log(`└──────────────────────────────────────┘\n\n┌──────────────────────────────────────────────────────────────────────────┐\n|${client.user.tag} is up in ${client.guilds.size} guilds, for ${client.users.size} users!\n|Flight started at ${new Date()}\n|Using Gbot by Pesky12!\n└──────────────────────────────────────────────────────────────────────────┘`);
     // client.user.setGame(`use ${prefix}help | Serving in: ${client.guilds.size} guilds!`);
     client.user.setPresence({ game: { name: `use ${config.prefix}help | Serving in: ${client.guilds.size} guilds!`, type: 0 } });

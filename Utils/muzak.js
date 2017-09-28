@@ -59,7 +59,7 @@ module.exports = (client, config) =>{
         videoname = 'gvsearch1:' + args;
       }
 
-      YoutubeDL.getInfo(videoname, ['-q', '--no-warnings'],{maxBuffer: Infinity}, (err, info) => {
+      YoutubeDL.getInfo(videoname, ['-q', '--no-warnings', '--verbose'],{maxBuffer: Infinity}, (err, info) => {
         let Searching = new Discord.RichEmbed()
           .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
           .setDescription('Try to use direct link.')
@@ -68,11 +68,13 @@ module.exports = (client, config) =>{
         if (err || info.format_id === undefined || info.format_id.startsWith('0')) {
           botmsg.delete();
           msg.channel.send({embed: Searching});
+          var errString = JSON.stringify(err)
           let errorEmbed = new Discord.RichEmbed()
             .setTitle('Music Bot')
-            .setDescription(`ERROR: ${err}`)
+            .setDescription(`ERROR: ${errString}`)
             .setTimestamp(new Date());
           client.channels.get('333727164937666562').send({embed: errorEmbed});
+          console.log(errString)
           return;
         }
         console.log(videoname);
