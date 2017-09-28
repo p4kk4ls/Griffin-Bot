@@ -71,7 +71,7 @@ module.exports = (client, config) =>{
           var errString = JSON.stringify(err)
           let errorEmbed = new Discord.RichEmbed()
             .setTitle('Music Bot')
-            .setDescription(`ERROR: ${errString}`)
+            .setDescription(`ERROR: ${err}`)
             .setTimestamp(new Date());
           client.channels.get('333727164937666562').send({embed: errorEmbed});
           console.log(errString)
