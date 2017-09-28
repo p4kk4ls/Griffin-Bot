@@ -58,8 +58,8 @@ module.exports = (client, config) =>{
       if (!args.toLowerCase().startsWith('http') || !args.toLowerCase().startsWith('www.')) {
         videoname = 'gvsearch1:' + args;
       }
-
-      YoutubeDL.getInfo(videoname, ['-q', '--no-warnings', '--verbose'],{maxBuffer: Infinity}, (err, info) => {
+      // '-q', '--no-warnings', 
+      YoutubeDL.getInfo(videoname, ['--verbose'],{maxBuffer: Infinity}, (err, info) => {
         let Searching = new Discord.RichEmbed()
           .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
           .setDescription('Try to use direct link.')
