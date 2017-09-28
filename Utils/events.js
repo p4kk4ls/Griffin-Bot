@@ -187,17 +187,24 @@ module.exports = (client, config) =>{
   });
 
   client.on('guildMemberAdd', (member) => {
-    var randomGreetings = [
-      `Welcome ${member.user.tag}! Sit by the fire and enjoy the fireworks.`,
-      `55 to our server ${member.user.tag}`,
-      `${member.user.tag} is too OP pls nerf`,
-      `${member.user.tag} suddenly teleported here!`
-    ];
-    var randomNumber = Math.floor(Math.random()*randomGreetings.length);
-  
+    var greetings = randomGreetings[randomNumber];
+    if(member.user.id == '252890173820370945'){
+      greetings = 'Welcome our god Erin';
+    } else if(member.user.id == '235047463017381888'){
+      greetings = 'Pesky bird just landed here!!';
+    } else {
+      var randomGreetings = [
+        `Welcome ${member.user.tag}! Sit by the fire and enjoy the fireworks.`,
+        `55 to our server ${member.user.tag}`,
+        `${member.user.tag} is too OP pls nerf`,
+        `${member.user.tag} suddenly teleported here!`
+      ];
+      var randomNumber = Math.floor(Math.random()*randomGreetings.length);
+      greetings = randomGreetings[randomNumber];
+    }
   
     let embed = new Discord.RichEmbed()
-      .setAuthor(randomGreetings[randomNumber], member.user.displayAvatarURL)
+      .setAuthor(greetings, member.user.displayAvatarURL)
       .setColor('#1bbc12');
     if (member.guild.channels.find('name', 'general')){
       member.guild.channels.find('name', 'general').send({embed});

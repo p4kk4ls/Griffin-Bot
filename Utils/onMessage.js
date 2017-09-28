@@ -5,19 +5,19 @@ module.exports = (client, config) =>{
       message.channel.send(responseObject[message.content]);
     }
 
-    if (message.content.startsWith('Where is my son?')) {
+    if (message.content.startsWith('Where is my child?')) {
       if (message.author.id == config.ownerID) {
         message.channel.send('Here mate');
         console.log('Here mate');
       } else {
-        message.channel.send('I dont know where he is');
+        message.channel.send('I dont know where it is');
         console.log('Where is my son?');
       }
     }
-    if (message.content.startsWith('Where is my son?')){
-      if(message.channel.default) return;
-      message.channel.send('Mee6 is a friendly helper that will help you with your everyday tasks and dissapear when his task is fufiled. But KEEP IT SIMPLE!! This is a photo of a Mee6:', {files: '../img/mee6.PNG'});
-    }
+    // if (message.content.startsWith('Where is my son?')){
+    //   if(message.channel.default) return;
+    //   message.channel.send('Mee6 is a friendly helper that will help you with your everyday tasks and dissapear when his task is fufiled. But KEEP IT SIMPLE!! This is a photo of a Mee6:', {files: '../img/mee6.PNG'});
+    // }
 
     // I  A M  G R Y P H O N
     // if (message.author.bot) return;

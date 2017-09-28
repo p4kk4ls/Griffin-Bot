@@ -68,13 +68,13 @@ module.exports = (client, config) =>{
         if (err || info.format_id === undefined || info.format_id.startsWith('0')) {
           botmsg.delete();
           msg.channel.send({embed: Searching});
-          var errString = JSON.stringify(err)
+          var errString = JSON.stringify(err);
           let errorEmbed = new Discord.RichEmbed()
             .setTitle('Music Bot')
             .setDescription(`ERROR: ${err}`)
             .setTimestamp(new Date());
           client.channels.get('333727164937666562').send({embed: errorEmbed});
-          console.log(err)
+          console.log(err);
           return;
         }
         console.log(videoname);
