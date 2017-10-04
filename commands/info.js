@@ -10,7 +10,6 @@ exports.run = (client, message) =>{
   message.channel.send({embed});
   message.channel.send('https://bitbucket.org/Peskyn12/griffin-bot/');
 };
-235047463017381888;
 exports.help = {
   name: 'info',
   description: '🔧 Shows info about the bot! :3',
