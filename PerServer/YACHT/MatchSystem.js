@@ -34,7 +34,7 @@ module.exports = (client) => {
       
       console.log(args)
         
-      var day = args[0] - 1;
+      var day = args[0];
       var month = args[1] - 1;
       var hours = args[2];
       var minutes = args[3];
