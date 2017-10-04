@@ -46,7 +46,7 @@ module.exports = (client) => {
         .setAuthor('Scheduled match', 'http://orig12.deviantart.net/e2aa/f/2015/225/c/5/team_fortress_2_icon__metro_style__by_designsnext-d95i6qv.png')
         .setDescription(`${description}`)
         .addField('Match time and date', time, true)
-        .addField('Map',`${map}`, true)
+        .addField('Map(s)',`${map}`, true)
         .setThumbnail(thumbnail)
         .setColor(color)
         .setFooter(`Match added by: ${message.author.tag}(${message.member.id})`);
