@@ -50,14 +50,7 @@ client.on('message', async (message) => {
   let cmd = client.commands.get(command.slice(prefix.length))
   if(cmd) {
   cmd.run(client, message, args, config)
-  console.log(`┌─────────────────────\n|${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'\n└─────────────────────`)
-  let embed = new Discord.RichEmbed()
-      .setAuthor(message.author.username, message.author.displayAvatarURL)
-      .setDescription(`\n|${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'\n`)
-      .setColor('#ff7700')
-      .setFooter('Logging', client.user.avatarURL)
-      .setTimestamp(new Date());
-  client.channels.get("331748531981516800").send({embed});
+  console.log(`┌─────────────────────\n|${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'\n└─────────────────────`);
   }
 });
 
