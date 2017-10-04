@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-var serverID = '348005882329694208';
+var serverID = '331072774112018433';
 
 module.exports = (client) => {
   console.log('Match system loaded');
@@ -9,6 +9,7 @@ module.exports = (client) => {
     let args = messageAray.slice(1);
 
     if(message.content.startsWith('~match')){
+      if(!args) return message.channel.send('Nice args mate!!!');
       if(args == 'help'){message.channel.send('Help: ~match [day] [month] [hour] [minute] | [Map] | [Custom note] | [Custom HEX color] | [Custom thumbnail]');}
 
       let split = message.content.split(' | ');
@@ -21,7 +22,7 @@ module.exports = (client) => {
         map = 'Not decided';
       }
       if(!description){
-        description = 'Please say your team captain or mods if you can\'t make it';
+        description = 'Please tell your team captain or mods if you can\'t make it';
       }
       if(!color){
         color = '#2176ff';
@@ -36,14 +37,17 @@ module.exports = (client) => {
       var minutes = args[3];
       var time = new Date(2017, month, day, hours, minutes);
 
+      if(time == 'Invalid Date') return message.channel.send('Invalid date/time!!!').then(botmsg =>{botmsg.delete(5000);});
+
       var matchEmbed = new Discord.RichEmbed()
         .setAuthor('Scheduled match', 'http://orig12.deviantart.net/e2aa/f/2015/225/c/5/team_fortress_2_icon__metro_style__by_designsnext-d95i6qv.png')
         .setDescription(`${description}`)
         .addField('Match time and date', time, true)
         .addField('Map',`${map}`, true)
         .setThumbnail(thumbnail)
-        .setColor(color);
-
+        .setColor(color)
+        .setFooter(`Match added by: ${message.author.tag}(${message.member.id})`);
+      message.guild.channels.find('name', 'matches').send('@here').then(botmsg =>{botmsg.delete()});
       message.guild.channels.find('name', 'matches').send({embed: matchEmbed});
 
     }
