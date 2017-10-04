@@ -6,7 +6,6 @@ exports.run = (client, message, args) =>{
   
   setTimeout(() => {
     message.channel.send({file: './img/rip.png'});
-    client.channels.get('331748531981516800').send({file: './img/rip.png'});
     message.channel.stopTyping();
   }, Math.random() * (100 - 3) + 5 * 1000);
 
