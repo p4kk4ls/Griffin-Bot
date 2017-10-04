@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-var serverID = '331072774112018433';
+var serverID = '348005882329694208';
 
 module.exports = (client) => {
   console.log('Match system loaded');
