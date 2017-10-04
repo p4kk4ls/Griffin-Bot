@@ -4,13 +4,14 @@ var serverID = '331072774112018433';
 module.exports = (client) => {
   console.log('Match system loaded');
   client.on('message', message => {
+    if (message.channel.type !== 'text') return;
     if (message.guild.id !== serverID) return;
     let messageAray = message.content.split(' ');
     let args = messageAray.slice(1);
 
     if(message.content.startsWith('~match')){
       if(!args) return message.channel.send('Nice args mate!!!');
-      if(args == 'help'){message.channel.send('Help: ~match [day] [month] [hour] [minute] | [Map] | [Custom note] | [Custom HEX color] | [Custom thumbnail]');}
+      if(args == 'help'){message.channel.send('Help: ~match [month] [day] [hour] [minute] | [Map] | [Custom note] | [Custom HEX color] | [Custom thumbnail]'); return}
 
       let split = message.content.split(' | ');
       var map = split[1];
