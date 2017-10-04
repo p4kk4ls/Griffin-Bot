@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-var serverID = '348005882329694208';
+var serverID = '331072774112018433';
 
 module.exports = (client) => {
   console.log('Match system loaded');
@@ -31,13 +31,15 @@ module.exports = (client) => {
       if(!thumbnail){
         thumbnail = 'https://wiki.teamfortress.com/w/images/0/06/Competitive_logo_laurel.png?t=20160305050153';
       }
+      
+      console.log(args)
         
-      var day = args[1];
-      var month = args[0];
+      var day = args[0] - 1;
+      var month = args[1] - 1;
       var hours = args[2];
       var minutes = args[3];
       var time = new Date(2017, month, day, hours, minutes);
-
+      console.log(time)
       if(time == 'Invalid Date') return message.channel.send('Invalid date/time!!!').then(botmsg =>{botmsg.delete(5000);});
 
       var matchEmbed = new Discord.RichEmbed()
