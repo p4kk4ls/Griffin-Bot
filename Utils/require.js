@@ -4,4 +4,5 @@ module.exports = (client, config) =>{
   require('../PerServer/mahamas ART/main')(client);
   require('../PerServer/Pits Discord/main')(client);
   require('../PerServer/UGS/main')(client);
+  require('../PerServer/YACHT/main')(client);
 };

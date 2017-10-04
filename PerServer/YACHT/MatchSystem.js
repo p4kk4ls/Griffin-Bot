@@ -1,0 +1,51 @@
+const Discord = require('discord.js');
+var serverID = '348005882329694208';
+
+module.exports = (client) => {
+  console.log('Match system loaded');
+  client.on('message', message => {
+    if (message.guild.id !== serverID) return;
+    let messageAray = message.content.split(' ');
+    let args = messageAray.slice(1);
+
+    if(message.content.startsWith('~match')){
+      if(args == 'help'){message.channel.send('Help: ~match [day] [month] [hour] [minute] | [Map] | [Custom note] | [Custom HEX color] | [Custom thumbnail]');}
+
+      let split = message.content.split(' | ');
+      var map = split[1];
+      var description = split[2];
+      var color = split[3];
+      var thumbnail = split[4];
+
+      if(!map){
+        map = 'Not decided';
+      }
+      if(!description){
+        description = 'Please say your team captain or mods if you can\'t make it';
+      }
+      if(!color){
+        color = '#2176ff';
+      }
+      if(!thumbnail){
+        thumbnail = 'https://wiki.teamfortress.com/w/images/0/06/Competitive_logo_laurel.png?t=20160305050153';
+      }
+        
+      var day = args[0];
+      var month = args[1];
+      var hours = args[2];
+      var minutes = args[3];
+      var time = new Date(2017, month, day, hours, minutes);
+
+      var matchEmbed = new Discord.RichEmbed()
+        .setAuthor('Scheduled match', 'http://orig12.deviantart.net/e2aa/f/2015/225/c/5/team_fortress_2_icon__metro_style__by_designsnext-d95i6qv.png')
+        .setDescription(`${description}`)
+        .addField('Match time and date', time, true)
+        .addField('Map',`${map}`, true)
+        .setThumbnail(thumbnail)
+        .setColor(color);
+
+      message.guild.channels.find('name', 'matches').send({embed: matchEmbed});
+
+    }
+  });
+};
