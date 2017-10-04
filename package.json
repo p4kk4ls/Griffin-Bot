@@ -15,7 +15,6 @@
     "cat-facts": "^1.0.2",
     "ci-build": "0.0.7",
     "cleverbot-node": "^0.3.11",
-    "cleverbot.io": "^1.0.4",
     "discord.js": "^11.2.1",
     "ffmpeg-binaries": "3.2.2-3",
     "google-translate-api": "^2.3.0",
