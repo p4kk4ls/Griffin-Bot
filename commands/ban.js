@@ -48,7 +48,7 @@ exports.run = async (client, message, args) => {
     .setFooter('Ban', client.user.avatarURL);
 
 //Banned PM
-const BannedPM = new Discord.RichEmbed()
+  const BannedPM = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.avatarURL)
     .setDescription('You have been banned!!')
     .setColor('#ff0000')
@@ -68,7 +68,7 @@ const BannedPM = new Discord.RichEmbed()
     .addField(`And ${userToBan.tag} is gone`, `Check mod-log for more info.`, true)
     .setFooter('Ban', client.user.avatarURL);
 
-      const basicBanNoLog = new Discord.RichEmbed()
+  const basicBanNoLog = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.avatarURL)
     .setDescription('I recommend creating #mod-log channel!')
     .setColor(0x00AE86)
