@@ -27,7 +27,6 @@ exports.run = async(client, message, args) =>{
             .setFooter(`${site} | Tags: ${args.slice(1).join(' ')}`);
           message.channel.send({embed});
           message.channel.stopTyping();
-          client.channels.get('333725915995570186').send({embed});
       }
     })
     .catch(err => {
