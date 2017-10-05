@@ -5,9 +5,9 @@ console.log('UGS assign Loaded');
 
 module.exports = (client) => {
   client.on('message', message => {
+    if (message.channel.type !== 'text') return;
     if (message.guild.id !== guildID) return;
     let messageAray = message.content.split(' | ');
-    if (message.channel.type !== 'text') return;
     if (message.content.startsWith('~assign')){
       let title = messageAray[0].slice(7);
       let description = messageAray[1];
