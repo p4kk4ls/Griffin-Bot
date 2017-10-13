@@ -11,7 +11,12 @@ module.exports = (client, config) =>{
   newGuildEmoji(client);
   newGuildMember(client);
   leftGuildMember(client);
+  updateStatus(client);
 };
+
+function updateStatus(client){
+  client.user.setPresence({ game: { name: `use ${config.prefix}help | Serving in: ${client.guilds.size} guilds!`, type: 0 } });
+}
 
 function onReady(client, config) {
   client.on('ready', () => {

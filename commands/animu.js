@@ -19,6 +19,7 @@ exports.run = (client, message, args, config) =>{
 
       var synopsis = result.anime[0].synopsis.toString().replace(/<[^>]+>|\[[^>]+]/gi, '');
       synopsis = he.decode(synopsis);
+      if(synopsis.length <= 250) return synopsis = "Desc too long for discord! Sorry, pls don't hurt me"
       const embed = new Discord.RichEmbed()
         .setDescription(synopsis)
         .setAuthor(`${result.anime[0].title} | ${result.anime[0].english}`, result.anime[0].image.toString())
