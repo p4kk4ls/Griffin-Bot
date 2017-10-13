@@ -5,7 +5,7 @@ exports.run = (client, message) =>{
 
   if (message.mentions.users.size < 1) { 
     let embed = new Discord.RichEmbed()
-      .setTitle('You havent said who\'s sandvich it is so i ate it.')
+      .setTitle('You haven\'t said who\'s sandvich it is so i ate it.')
       .setColor('#683e0d')
       .setThumbnail('http://www.markrice.com/birds/2005images/20051211_0031%20PiperHubble%20Eating%20Sandwich.JPG');
 

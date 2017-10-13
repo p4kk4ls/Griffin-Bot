@@ -48,7 +48,6 @@ module.exports = (client, config) =>{
 
     let Searching = new Discord.RichEmbed()
       .setAuthor(`Searching for '${args}'!!`, 'http://pic.2265.com/upload/2017-5/2017519152314485.png')
-      .setDescription('Please wait while im searching my nest for that song!!')
       .setFooter(`Requested by: ${msg.author.tag}`)
       .setColor('#f26b04');
 
@@ -62,13 +61,12 @@ module.exports = (client, config) =>{
       YoutubeDL.getInfo(videoname, ['--verbose'],{maxBuffer: Infinity}, (err, info) => {
         let Searching = new Discord.RichEmbed()
           .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
-          .setDescription('Try to use direct link.')
           .setFooter(`Requested by: ${msg.author.tag}`)
           .setColor('#c40101');
         if (err || info.format_id === undefined || info.format_id.startsWith('0')) {
           botmsg.delete();
-          msg.channel.send({embed: Searching});
-          var errString = JSON.stringify(err);
+          msg.channel.send({embed: Searching}).then(botmsg =>{botmsg.delete(5000);});
+          if(err.length >= 250) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
           let errorEmbed = new Discord.RichEmbed()
             .setTitle('Music Bot')
             .setDescription(`ERROR: ${err}`)
@@ -102,10 +100,7 @@ module.exports = (client, config) =>{
 
     const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
     if (voiceConnection === null) {
-      let NoSkip = new Discord.RichEmbed()
-        .setAuthor('Im not playing anything!!', 'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
-        .setColor('#f26b04');
-      msg.channel.send({embed: NoSkip}).then((botmsg) =>{
+      msg.channel.send('Im not playing anything!!').then((botmsg) =>{
         botmsg.delete(5000);
       });
       return;
@@ -135,10 +130,11 @@ module.exports = (client, config) =>{
   function queue(msg) {
     const queue = getQueue(msg.guild.id);
     const text = queue.map((video, index) => (
-      (index + 1) + ': ' + video.title
+      (index + 1) + ': ' + `${video.title} (${video.duration})` 
     )).join('\n');
 
     let queueStatus = 'Stopped';
+    if (text.length <= 250) return msg.channel.send('Queue too long for Discord to display!!!');
     let Queue = new Discord.RichEmbed()
       .setAuthor(`Queue ('${queueStatus}')`, 'https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/list-circle-blue-128.png')
       .setColor('#0a9cd1')
@@ -152,10 +148,7 @@ module.exports = (client, config) =>{
     if (isAdmin(msg.member)) {
       const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
       if (voiceConnection === null) {
-        let NoSkip = new Discord.RichEmbed()
-          .setAuthor('Im not playing anything!!', 'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
-          .setColor('#f26b04');
-        msg.channel.send({embed: NoSkip}).then((botmsg) =>{
+        msg.channel.send('Im not playing anything!!').then((botmsg) =>{
           botmsg.delete(5000);
         });
         return;
@@ -166,7 +159,7 @@ module.exports = (client, config) =>{
       voiceConnection.player.dispatcher.end();
       voiceConnection.disconnect();
     } else {
-      msg.channel.send('You don\'t have permission to use that command ya twat!');
+      msg.channel.send('You don\'t have permission to use that command mate!');
     }
   }
 
@@ -177,7 +170,6 @@ module.exports = (client, config) =>{
       const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
       if (voiceConnection !== null) return voiceConnection.disconnect();
     }
-    const queueso = getQueue(msg.guild.id);
 
     new Promise((resolve, reject) => {
       const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == msg.guild.id);
@@ -187,6 +179,7 @@ module.exports = (client, config) =>{
             resolve(connection);
           }).catch((error) => {
             console.log(error);
+            if(error.length >= 250) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
             let errorEmbed = new Discord.RichEmbed()
               .setTitle('Music bot')
               .setDescription(`ERROR: ${error}`)
@@ -216,8 +209,9 @@ module.exports = (client, config) =>{
         connection.on('error', (error) => {
           // Skip to the next song.
           console.log(error);
+          if(error.length >= 250) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
           let errorEmbed = new Discord.RichEmbed()
-            .setTitle('Music Bot')
+            .setTitle('Music bot')
             .setDescription(`ERROR: ${error}`)
             .setTimestamp(new Date());
           client.channels.get('333727164937666562').send({embed: errorEmbed});
@@ -228,8 +222,9 @@ module.exports = (client, config) =>{
         dispatcher.on('error', (error) => {
           // Skip to the next song.
           console.log(error);
+          if(error.length >= 250) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
           let errorEmbed = new Discord.RichEmbed()
-            .setTitle('Music Bot')
+            .setTitle('Music bot')
             .setDescription(`ERROR: ${error}`)
             .setTimestamp(new Date());
           client.channels.get('333727164937666562').send({embed: errorEmbed});
@@ -250,16 +245,18 @@ module.exports = (client, config) =>{
         });
       }).catch((error) => {
         console.log(error);
+        if(error.length >= 250) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
         let errorEmbed = new Discord.RichEmbed()
-          .setTitle('Music Bot')
+          .setTitle('Music bot')
           .setDescription(`ERROR: ${error}`)
           .setTimestamp(new Date());
         client.channels.get('333727164937666562').send({embed: errorEmbed});
       });
     }).catch((error) => {
       console.log(error);
+      if(error.length >= 250) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
       let errorEmbed = new Discord.RichEmbed()
-        .setTitle('google-translate-api')
+        .setTitle('Music bot')
         .setDescription(`ERROR: ${error}`)
         .setTimestamp(new Date());
       client.channels.get('333727164937666562').send({embed: errorEmbed});
