@@ -67,10 +67,10 @@ module.exports = (client, config) =>{
           botmsg.delete();
           msg.channel.send({embed: Searching}).then(botmsg =>{botmsg.delete(5000);});
           if(err.length >= 240) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
-          let errorEmbed = new Discord.RichEmbed()
-            .setTitle('Music Bot')
-            .setDescription(`ERROR: ${err}`)
-            .setTimestamp(new Date());
+          // let errorEmbed = new Discord.RichEmbed()
+          //   .setTitle('Music Bot')
+          //   .setDescription(`ERROR: ${err}`)
+          //   .setTimestamp(new Date());
           //client.channels.get('333727164937666562').send({embed: errorEmbed});
           console.log(err);
           return;
@@ -180,10 +180,10 @@ module.exports = (client, config) =>{
           }).catch((error) => {
             console.log(error);
             if(error.length >= 240) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
-            let errorEmbed = new Discord.RichEmbed()
-              .setTitle('Music bot')
-              .setDescription(`ERROR: ${error}`)
-              .setTimestamp(new Date());
+            // let errorEmbed = new Discord.RichEmbed()
+            //   .setTitle('Music bot')
+            //   .setDescription(`ERROR: ${error}`)
+            //   .setTimestamp(new Date());
             //client.channels.get('333727164937666562').send({embed: errorEmbed});
           });
         } else {
@@ -210,10 +210,10 @@ module.exports = (client, config) =>{
           // Skip to the next song.
           console.log(error);
           if(error.length >= 240) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
-          let errorEmbed = new Discord.RichEmbed()
-            .setTitle('Music bot')
-            .setDescription(`ERROR: ${error}`)
-            .setTimestamp(new Date());
+          // let errorEmbed = new Discord.RichEmbed()
+          //   .setTitle('Music bot')
+          //   .setDescription(`ERROR: ${error}`)
+          //   .setTimestamp(new Date());
           //client.channels.get('333727164937666562').send({embed: errorEmbed});
           queue.shift();
           executeQueue(msg, queue);
@@ -223,10 +223,10 @@ module.exports = (client, config) =>{
           // Skip to the next song.
           console.log(error);
           if(error.length >= 240) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
-          let errorEmbed = new Discord.RichEmbed()
-            .setTitle('Music bot')
-            .setDescription(`ERROR: ${error}`)
-            .setTimestamp(new Date());
+          // let errorEmbed = new Discord.RichEmbed()
+          //   .setTitle('Music bot')
+          //   .setDescription(`ERROR: ${error}`)
+          //   .setTimestamp(new Date());
           //client.channels.get('333727164937666562').send({embed: errorEmbed});
           queue.shift();
           executeQueue(msg, queue);
@@ -246,19 +246,19 @@ module.exports = (client, config) =>{
       }).catch((error) => {
         console.log(error);
         if(error.length >= 240) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
-        let errorEmbed = new Discord.RichEmbed()
-          .setTitle('Music bot')
-          .setDescription(`ERROR: ${error}`)
-          .setTimestamp(new Date());
+        // let errorEmbed = new Discord.RichEmbed()
+        //   .setTitle('Music bot')
+        //   .setDescription(`ERROR: ${error}`)
+        //   .setTimestamp(new Date());
         //client.channels.get('333727164937666562').send({embed: errorEmbed});
       });
     }).catch((error) => {
       console.log(error);
       if(error.length >= 240) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
-      let errorEmbed = new Discord.RichEmbed()
-        .setTitle('Music bot')
-        .setDescription(`ERROR: ${error}`)
-        .setTimestamp(new Date());
+      // let errorEmbed = new Discord.RichEmbed()
+      //   .setTitle('Music bot')
+      //   .setDescription(`ERROR: ${error}`)
+      //   .setTimestamp(new Date());
       //client.channels.get('333727164937666562').send({embed: errorEmbed});
     });
   }
