@@ -66,7 +66,7 @@ module.exports = (client, config) =>{
         if (err || info.format_id === undefined || info.format_id.startsWith('0')) {
           botmsg.delete();
           msg.channel.send({embed: Searching}).then(botmsg =>{botmsg.delete(5000);});
-          if(err.length >= 250) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
+          if(err.length >= 240) return client.channels.get('333727164937666562').send('Log too long for discord check the TERMINAL!');
           let errorEmbed = new Discord.RichEmbed()
             .setTitle('Music Bot')
             .setDescription(`ERROR: ${err}`)
