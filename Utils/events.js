@@ -11,7 +11,6 @@ module.exports = (client, config) =>{
   newGuildEmoji(client);
   newGuildMember(client);
   leftGuildMember(client);
-  updateStatus(client);
 };
 
 function updateStatus(client){
