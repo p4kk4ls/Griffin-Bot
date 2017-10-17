@@ -22,10 +22,20 @@ exports.help = {
 };
 function sendEmbed(message, messageID) {
     message.channel.fetchMessage(messageID).then(messageFetched => {
+        // console.log(messageFetched.attachments[0])
+        // console.log(messageFetched.attachments)
+        var Attachment = (messageFetched.attachments).array()
+        console.log(Attachment)
         // console.log(messageFetched);
+        var attachmentsURL;
+        var attachFile;
+        if(Attachment[0].url) {attachmentsURL = Attachment[0].url}
+        if(Attachment[0].width === undefined) {attachFile = Attachment[0].url} 
         let embed = new Discord.RichEmbed()
         .setAuthor(messageFetched.author.tag, messageFetched.author.displayAvatarURL)
-        .setDescription(messageFetched.content)
+        .setDescription(messageFetched.content +"ᅠ"+ attachFile)
+        // .attachFile(Attachment[0].url)
+        .setImage(Attachment[0].url)
         .setTimestamp(messageFetched.createdAt)
         .setColor('#f9ce0c')
         .setFooter(`In: #${message.channel.name}`);
