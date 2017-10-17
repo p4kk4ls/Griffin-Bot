@@ -28,7 +28,7 @@ function sendEmbed(message, messageID) {
         .setDescription(messageFetched.content)
         .setTimestamp(messageFetched.createdAt)
         .setColor('#f9ce0c')
-        .setFooter(`Pinned by: ${message.author.tag}`);
+        .setFooter(`In: #${message.channel.name}`);
         message.guild.channels.find('name', 'pins').send({embed: embed})
 
     });
