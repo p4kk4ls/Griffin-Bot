@@ -134,7 +134,7 @@ module.exports = (client, config) =>{
     )).join('\n');
 
     let queueStatus = 'Stopped';
-    if (text.length <= 240) return msg.channel.send('Queue too long for Discord to display!!!');
+    if (text.length >= 240) return msg.channel.send('Queue too long for Discord to display!!!');
     let Queue = new Discord.RichEmbed()
       .setAuthor(`Queue ('${queueStatus}')`, 'https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/list-circle-blue-128.png')
       .setColor('#0a9cd1')
