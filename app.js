@@ -10,17 +10,36 @@ if (fs.existsSync('./config-local.json')) {
     var config = require('./config-server.json');
     console.log('Detected Server Config')
 }
-
 const prefix = config.prefix;
 
 console.log(process.uptime())
 
-require('./Utils/events.js')(client, config)
-require('./Utils/onMessage.js')(client, config)
-require('./Utils/require.js')(client, config)
-
 client.commands = new Discord.Collection
 
+
+/**
+ * Loads Everything in ./Utils/
+ */
+fs.readdir("./Utils", (err, files) =>{
+  if(err) return console.error(err)
+  let filesjs = files.filter(f => f.split(".").pop() === "js")
+  if(filesjs <= 0){
+      console.log('No Utils found!!')
+      return
+  }
+
+  console.log(`\n┌──────────────────────────────────────┐\n|Im trying to load ${filesjs.length} utils, hold up!`)
+  filesjs.forEach((f, i) => {
+      require(`./Utils/${f}`)(client, config)
+      console.log(`|${i + 1}: ${f} ready to fly!`)
+  })
+  console.log('└──────────────────────────────────────┘')
+})
+
+
+/**
+ * Commmand Collection
+ */
 fs.readdir("./commands/", (err, files) =>{
     if(err) return console.error(err)
     let filesjs = files.filter(f => f.split(".").pop() === "js")
@@ -35,9 +54,12 @@ fs.readdir("./commands/", (err, files) =>{
         console.log(`|${i + 1}: ${f} ready to fly!`)
         client.commands.set(file.help.name, file);
     })
+      console.log('└──────────────────────────────────────┘')
 })
 
-
+/**
+ * Command Handler
+ */
 client.on('message', async (message) => {
   if (message.channel.type !== 'text') return;
   if(message.author.bot) return;
