@@ -54,7 +54,7 @@ module.exports = (client, config) =>{
     msg.channel.send({embed: Searching}).then(botmsg => {
       var videoname = args;
 
-      if (!args.toLowerCase().startsWith('http') || !args.toLowerCase().startsWith('www.')) {
+      if (!args.toLowerCase().startsWith('http')) {
         videoname = 'gvsearch1:' + args;
       }
       // '-q', '--no-warnings', 
