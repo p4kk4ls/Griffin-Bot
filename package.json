@@ -5,6 +5,10 @@
   "main": "app.js",
   "author": "Aleš Olesov",
   "license": "MIT",
+  "scripts": {
+    "start": "node .",
+    "test": "node . -testrun"
+  },
   "dependencies": {
     "MALjs": "^0.1.0",
     "aniscrape": "^0.1.1",
