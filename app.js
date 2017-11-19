@@ -62,7 +62,7 @@ fs.readdir("./commands/", (err, files) =>{
 /**
  * Command Handler
  */
-client.on('message', async (message) => {
+client.on('message', (message) =>{
   if (message.channel.type !== 'text') return;
   if(message.author.bot) return;
   if(!message.content.startsWith(prefix)) return;
@@ -78,6 +78,6 @@ client.on('message', async (message) => {
   }
 });
 
-if(nodeargs[0] == '-testrun') return 0;
+if(nodeargs[0] == '-testrun') {return 0;};
 
 client.login(config.token);
