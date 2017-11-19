@@ -22,22 +22,38 @@ client.commands = new Discord.Collection
 /**
  * Loads Everything in ./Utils/
  */
-fs.readdir("./Utils", (err, files) =>{
+fs.readdir("./events", (err, files) =>{
   if(err) return console.error(err)
   let filesjs = files.filter(f => f.split(".").pop() === "js")
   if(filesjs <= 0){
-      console.log('No Utils found!!')
+      console.log('No Events found!!')
       return
   }
 
-  console.log(`\n┌──────────────────────────────────────┐\n|Im trying to load ${filesjs.length} utils, hold up!`)
+  console.log(`\n┌──────────────────────────────────────┐\n|I am trying to load ${filesjs.length} events, hold up!`)
   filesjs.forEach((f, i) => {
-      require(`./Utils/${f}`)(process, client, config)
-      console.log(`|${i + 1}: ${f} ready to fly!`)
+    let file = require(`./events/${f}`)
+    console.log(`|${i + 1}: ${f} ready to fly!`)
+    file.run(client, config)
   })
   console.log('└──────────────────────────────────────┘')
 })
 
+fs.readdir("./Utils", (err, files) =>{
+    if(err) return console.error(err)
+    let filesjs = files.filter(f => f.split(".").pop() === "js")
+    if(filesjs <= 0){
+        console.log('No Utils found!!')
+        return
+    }
+  
+    console.log(`\n┌──────────────────────────────────────┐\n|I am trying to load ${filesjs.length} utils, hold up!`)
+    filesjs.forEach((f, i) => {
+        require(`./Utils/${f}`)(process, client, config)
+        console.log(`|${i + 1}: ${f} ready to fly!`)
+    })
+    console.log('└──────────────────────────────────────┘')
+  })
 
 /**
  * Commmand Collection
@@ -50,7 +66,7 @@ fs.readdir("./commands/", (err, files) =>{
         return
     }
 
-    console.log(`\n┌──────────────────────────────────────┐\n|Im trying to load ${filesjs.length} commands, hold up!`)
+    console.log(`\n┌──────────────────────────────────────┐\n|I am trying to load ${filesjs.length} commands, hold up!`)
     filesjs.forEach((f, i) => {
         let file = require(`./commands/${f}`)
         console.log(`|${i + 1}: ${f} ready to fly!`)
