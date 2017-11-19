@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
-module.exports = (client, config) =>{
-  onReady(client, config);
+module.exports = (process, client, config) =>{
+  onReady(process, client, config);
   roleDelete(client);
   roleCreated(client);
   guildBan(client);
@@ -17,7 +17,7 @@ function updateStatus(client){
   client.user.setPresence({ game: { name: `use ${config.prefix}help | Serving in: ${client.guilds.size} guilds!`, type: 0 } });
 }
 
-function onReady(client, config) {
+function onReady(process, client, config) {
   client.on('ready', () => {
     console.log(`┌──────────────────────────────────────────────────────────────────────────┐\n|${client.user.tag} is up in ${client.guilds.size} guilds, for ${client.users.size} users!\n|Flight started at ${new Date() }\n|Using Gbot by Pesky12!\n└──────────────────────────────────────────────────────────────────────────┘`);
     client.user.setPresence({ game: { name: `use ${config.prefix}help | Serving in: ${client.guilds.size} guilds!`, type: 0 } });
@@ -29,6 +29,7 @@ function onReady(client, config) {
     client.channels.get('331072865707360258').send({ embed });
     console.log(`┌────────────────────┐\n|Took: ${process.uptime() } seconds!|\n└────────────────────┘`);
   });
+  var nodeargs = process.argv.slice(2);
 }
 
 function guildCantReach(client) {
