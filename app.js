@@ -2,17 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const fs = require('fs');
-
-switch (new Date().getDay()) {
-    case :
-        text = "Today is Saturday";
-        break; 
-    case 0:
-        text = "Today is Sunday";
-        break; 
-    default: 
-        text = "Looking forward to the Weekend";
-}
+var nodeArgs = process.argv.slice(2)
 
 if (fs.existsSync('./config-local.json')) {
     var config = require('./config-local.json');
@@ -21,11 +11,25 @@ if (fs.existsSync('./config-local.json')) {
     var config = require('./config-server.json');
     console.log('Detected Server Config')
 }
+
+switch(nodeArgs[0]) {
+    case '-testrun':
+        var testrun = true;
+        console.log("RUNNING WITH -test!!!!")
+        break; 
+    case '-dev':
+        var config = require('./config-local.json');
+        console.log("RUNNING WITH -dev!!!!")
+        break;
+    case '-main':
+        var config = require('./config-server.json');
+        console.log("RUNNING WITH -main!!!!")
+        break;
+}
+
 const prefix = config.prefix;
 
 console.log(process.uptime())
-
-var nodeargs = process.argv.slice(2);
 
 client.commands = new Discord.Collection
 
@@ -105,6 +109,6 @@ client.on('message', (message) =>{
   }
 });
 
-if(nodeargs[0] == '-testrun') {return 0;};
+if(testrun == true) return 0;
 
 client.login(config.token);
