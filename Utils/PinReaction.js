@@ -19,6 +19,11 @@ function reactionAdded (client) {
 
 function sendEmbed(message, messageID) {
     message.channel.fetchMessage(messageID).then(messageFetched => {
+        
+        console.log(messageFetched.channel.id)
+        if(messageFetched.channel.id == '286870812030402560'){
+        var channelSwitchName = 'pins-artwork';
+        } else {var channelSwitchName = 'pins'}
         var Attachment = (messageFetched.attachments).array()
         var attachmentsURL;
         var attachFile;
@@ -40,6 +45,6 @@ function sendEmbed(message, messageID) {
                 .setColor('#f9ce0c')
                 .setFooter(`In: #${message.channel.name}`)};
         message.channel.send(":ok_hand: Pinned").then(botmsg => {botmsg.delete(5000)})
-        message.guild.channels.find('name', 'pins').send({embed: embed})
+        message.guild.channels.find('name', channelSwitchName).send({embed: embed})
     });
 };
