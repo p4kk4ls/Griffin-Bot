@@ -3,6 +3,17 @@ const client = new Discord.Client();
 
 const fs = require('fs');
 
+switch (new Date().getDay()) {
+    case :
+        text = "Today is Saturday";
+        break; 
+    case 0:
+        text = "Today is Sunday";
+        break; 
+    default: 
+        text = "Looking forward to the Weekend";
+}
+
 if (fs.existsSync('./config-local.json')) {
     var config = require('./config-local.json');
     console.log('Detected Local Config')
