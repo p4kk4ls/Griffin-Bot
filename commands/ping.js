@@ -4,7 +4,7 @@ exports.run = (client, message, args,config) => {
     let messageInputJs = messageInput.join(' ')
     client.channels.get(args[0]).send(messageInputJs);
   }
-  if(message.author.id === '382226489011339266' && args){
+  if(message.author.id === '252890173820370945' && args){
       let messageInput = args.slice(1);
       let messageInputJs = messageInput.join(' ')
       client.channels.get(args[0]).send(messageInputJs);
