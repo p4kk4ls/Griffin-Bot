@@ -18,7 +18,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: 'roleDelete',
-    enabled: true,
-  };
+exports.help = {
+  name:"Role deleted",
+  description: "Triggered when role is deleted"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

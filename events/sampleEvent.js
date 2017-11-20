@@ -5,7 +5,12 @@ exports.run = (client, config) =>{
 
   };
 
+  exports.help = {
+    name:"",
+    description: ""
+  }
+
   exports.settings = {
-    name: '',
-    enabled: false,
+        enabled: false,    
+        public: false,
   };

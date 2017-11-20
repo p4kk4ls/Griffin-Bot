@@ -14,7 +14,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: 'Ready',
-    enabled: true,
-  };
+exports.help = {
+  name:"On ready",
+  description: "Ttriggered when bot starts sucessfully"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: false,
+};

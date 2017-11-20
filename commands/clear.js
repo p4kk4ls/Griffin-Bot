@@ -21,6 +21,11 @@ exports.run = async(client, message, args) =>{
   return;
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'clear',
   description: '🔧 Clears a defined number of messages.',

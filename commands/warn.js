@@ -79,6 +79,11 @@ exports.run = (client, message, args) => {
   }
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'warn',
   description: '🛑 Issues a warning to the mentioned user.',

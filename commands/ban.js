@@ -91,6 +91,12 @@ exports.run = async (client, message, args) => {
     message.guild.owner.send({embed: basicBanNoLog});
   }
 };
+
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'ban',
   description: '🔨 Unleash the banhammer!!',

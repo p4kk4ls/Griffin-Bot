@@ -87,6 +87,11 @@ exports.run = (client, message, args) => {
   }
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'kick',
   description: '👞 Kicks the mentioned user.',

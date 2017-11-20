@@ -20,7 +20,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: true,
-  };
+exports.help = {
+  name:"Channel Deleted",
+  description: "Triggered when channel is deleted"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

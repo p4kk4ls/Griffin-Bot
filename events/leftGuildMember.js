@@ -23,7 +23,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: false,
-  };
+exports.help = {
+  name:"User Left",
+  description: "Triggered when user leaves the server"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

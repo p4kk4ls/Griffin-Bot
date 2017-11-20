@@ -34,6 +34,11 @@ exports.run = async(client, message, args) =>{
     return
   }
 
+  exports.settings = {
+    enabled: false,     
+    public: false,
+  };
+
 exports.help = {
   name: 'unmute',
   description: '🐵 Unmutes a mentioned user in the given channel.',
