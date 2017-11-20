@@ -1,3 +1,5 @@
+import { settings } from './events/guildBan';
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -32,10 +34,12 @@ const prefix = config.prefix;
 console.log(process.uptime())
 
 client.commands = new Discord.Collection
+client.commandsHidden = new Discord.Collection
+client.events = new Discord.Collection
 
 
 /**
- * Loads Everything in ./Utils/
+ * Loads Everything in ./Events/
  */
 fs.readdir("./events", (err, files) =>{
   if(err) return console.error(err)
@@ -48,8 +52,16 @@ fs.readdir("./events", (err, files) =>{
   console.log(`\n┌──────────────────────────────────────┐\n|I am trying to load ${filesjs.length} events, hold up!`)
   filesjs.forEach((f, i) => {
     let file = require(`./events/${f}`)
-    console.log(`|${i + 1}: ${f} ready to fly!`)
-    file.run(client, config)
+
+    if(file.settings.enabled == true){
+        console.log(`|${i + 1}: ${f} ready to fly!`)
+        file.run(client, config)
+        if(file.settings.public == true){
+            client.events.set(file.help.name, file);
+        }
+    } else {
+        console.log(`|${i + 1}: ${f} is disabled!`)
+    }
   })
   console.log('└──────────────────────────────────────┘')
 })
@@ -84,7 +96,12 @@ fs.readdir("./commands/", (err, files) =>{
     console.log(`\n┌──────────────────────────────────────┐\n|I am trying to load ${filesjs.length} commands, hold up!`)
     filesjs.forEach((f, i) => {
         let file = require(`./commands/${f}`)
+
+        if(file.settings.enabled == false) return console.log((`|${i + 1}: ${f} is disabled!`);
         console.log(`|${i + 1}: ${f} ready to fly!`)
+        if(file.settings.public == false){
+            client.commandsHidden.set(file.help.name, file);
+        }
         client.commands.set(file.help.name, file);
     })
       console.log('└──────────────────────────────────────┘')

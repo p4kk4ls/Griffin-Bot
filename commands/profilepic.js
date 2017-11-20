@@ -17,6 +17,12 @@ module.exports.run = async(client, message, args) =>{
 
     msg.delete()
 }
+
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'profilepic',
   description: `🖨 Grabs mentioned user's profile pic.`,

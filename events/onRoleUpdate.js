@@ -16,7 +16,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: 'Role update',
-    enabled: false,
-  };
+exports.help = {
+  name:"Role Updated",
+  description: "Triggered when role's perms, name, etc has been chanaged"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

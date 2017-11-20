@@ -43,6 +43,11 @@ module.exports.run = async(client, message, args) =>{
     }
 }
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'mute',
   description: '🙊 Mutes a mentioned user in the given channel.',

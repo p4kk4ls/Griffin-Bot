@@ -42,6 +42,11 @@ exports.run = (client, message, args, config) =>{
       console.log(err);});
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'anime',
   description: '🔍 Searches for animu.',

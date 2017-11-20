@@ -17,7 +17,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: true,
-  };
+exports.help = {
+  name:"Role created",
+  description: "Triggered when role is created"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

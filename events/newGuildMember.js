@@ -60,7 +60,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: false,
-  };
+exports.help = {
+  name:"User join",
+  description: "Triggered when new user joins the server"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};
