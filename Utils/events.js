@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports = (process, client, config) =>{
+module.exports = (client, config) =>{
   onReady(process, client, config);
   roleDelete(client);
   roleCreated(client);
