@@ -95,7 +95,7 @@ fs.readdir("./commands/", (err, files) =>{
     filesjs.forEach((f, i) => {
         let file = require(`./commands/${f}`)
 
-        if(file.settings.enabled == false) return console.log((`|${i + 1}: ${f} is disabled!`);
+        if(file.settings.enabled == false) return console.log(`|${i + 1}: ${f} is disabled!`)
         console.log(`|${i + 1}: ${f} ready to fly!`)
         if(file.settings.public == false){
             client.commandsHidden.set(file.help.name, file);
