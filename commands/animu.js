@@ -2,17 +2,20 @@ const Discord = require('discord.js');
 const mal = require('MALjs');
 const he = require('he');
 
-exports.run = (client, message, args, config) =>{
-  var api = new mal(config.MALlogin, config.MALpass);
+exports.run = async (client, message, args, config) =>{
+  const api = await new mal(config.MALlogin, config.MALpass);
   let animename = args.join(' ');
-  if (animename.length < 1){ 
+  if (animename.length < 1){
+    let user = message.author 
     let embed = new Discord.RichEmbed()
       .setTitle('What anime i should find?')
       .setColor('#d15b12');
 
     message.channel.send({embed});
-    return;
-  }
+      animename = await message.channel.awaitMessages(m => {return m.content}, { max: 1, time: 5000, errors: ['time'] });
+      animename = animename.toString;
+      console.log (animename);
+  };
   console.log (animename);
   api.anime.search(animename)
     .then(result =>{
