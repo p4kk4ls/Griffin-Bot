@@ -20,7 +20,7 @@ client.commands = new Discord.Collection
 
 
 /**
- * Loads Everything in ./Utils/
+ * Utils Loader
  */
 fs.readdir("./Utils", (err, files) =>{
   if(err) return console.error(err)
@@ -40,7 +40,7 @@ fs.readdir("./Utils", (err, files) =>{
 
 
 /**
- * Commmand Collection
+ * Commmand Loader
  */
 fs.readdir("./commands/", (err, files) =>{
     if(err) return console.error(err)
