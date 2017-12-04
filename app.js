@@ -1,5 +1,3 @@
-import { settings } from './events/guildBan';
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
