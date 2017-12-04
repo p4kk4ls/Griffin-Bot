@@ -12,7 +12,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: false,
-  };
+exports.help = {
+  name:"Debug warning",
+  description: "Debug stuff up yo ass"
+}
+
+exports.settings = {
+      enabled: false,     
+      public: false,
+};

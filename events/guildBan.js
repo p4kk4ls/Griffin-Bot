@@ -19,7 +19,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: true,
-  };
+exports.help = {
+  name:"User banned",
+  description: "Triggered when somebody is banned"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

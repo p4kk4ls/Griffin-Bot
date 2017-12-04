@@ -18,7 +18,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: true,
-  };
+exports.help = {
+  name:"New emoji",
+  description: "Triggered when emoji is added"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

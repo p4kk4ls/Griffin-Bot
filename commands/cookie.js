@@ -21,6 +21,11 @@ exports.run = (client, message) =>{
   message.channel.send({embed});
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'sandvich',
   description: '🍪 Gives mentioned user a sandvich.',

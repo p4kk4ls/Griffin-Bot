@@ -11,10 +11,15 @@ exports.run = (client, config) =>{
     client.channels.get ('331072865707360258').send({ embed });
   });
 
+  exports.help = {
+    name:"DebugMessage",
+    description: "Spam machine"
+  }
+
 
   };
 
   exports.settings = {
-    name: '',
-    enabled: false,
+        enabled: false,     
+        public: false,
   };

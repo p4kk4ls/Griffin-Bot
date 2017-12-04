@@ -24,6 +24,12 @@ module.exports.run = async(client, message, args) =>{
     console.log(GetColour(user.avatarURL)+"nonfunc")
     return
 }
+
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'profile',
   description: '🎫 Shows information about mentioned user.',

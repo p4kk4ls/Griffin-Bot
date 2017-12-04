@@ -11,6 +11,11 @@ exports.run = (client, message, args) =>{
 
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'rip',
   description: '🗿 Creates a tombstone with a defined text.',

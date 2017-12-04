@@ -10,6 +10,11 @@ exports.run = (client, message, args) =>{
   message.channel.send({embed});
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'roll',
   description: '🎲 Throws dice with the numbers specified.',
