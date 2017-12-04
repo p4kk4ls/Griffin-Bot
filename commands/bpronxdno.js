@@ -51,6 +51,12 @@ await  booru.search(site, tags, {limit: 1, random: true})
       }
     });
 };
+
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'sbooru',
   description: '🔍 searches in a specified booru! (SFW sites only!)',

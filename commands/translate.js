@@ -65,6 +65,11 @@ exports.run = (client, message) =>{
   });
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'translate',
   description: 'TODO',

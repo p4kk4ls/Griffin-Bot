@@ -20,7 +20,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: false,
-  };
+exports.help = {
+  name:"Channel added",
+  description: "Triggered when a new channel is added"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

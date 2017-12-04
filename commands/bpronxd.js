@@ -53,6 +53,12 @@ exports.run = async(client, message, args) =>{
       }
     });
 };
+
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'booru',
   description: '🔍 Searches specified booru. (NSFW sites enabled/NSFW channels only).',

@@ -15,6 +15,11 @@ exports.run = async(client, message, args) =>{
     sendEmbed(message, messageID)
 };
 
+exports.settings = {
+    enabled: false,     
+    public: false,
+  };
+
 exports.help = {
   name: 'pin',
   description: '🔧 Pins a message',

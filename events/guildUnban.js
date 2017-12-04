@@ -17,7 +17,12 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
-    enabled: true,
-  };
+exports.help = {
+  name:"User Unbanned",
+  description: "Triggered when a user is unbanned"
+}
+
+exports.settings = {
+      enabled: true,     
+      public: true,
+};

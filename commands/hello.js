@@ -3,6 +3,11 @@ exports.run = (client, message, args) =>{
   return;
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'hello',
   description: '👋 Hallo',

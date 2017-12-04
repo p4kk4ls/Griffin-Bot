@@ -82,6 +82,11 @@ exports.run = (client, message, args) =>{
 
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'rps',
   description: '👊 Rock, ✋Paper, ✌Scissors!',

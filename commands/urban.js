@@ -32,6 +32,11 @@ exports.run = (client, message, args) =>{
       console.log(err);});
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 
 exports.help = {
   name: 'urban',

@@ -21,7 +21,13 @@ exports.run = (client, config) =>{
   });
 };
 
-  exports.settings = {
-    name: '',
+exports.help = {
+  name:"Channel Updated",
+  description: "Triggered when channel's perms, name, etc has been chanaged"
+}
+
+
+exports.settings = {
     enabled: true,
+    public: true,
   };

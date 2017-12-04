@@ -16,6 +16,11 @@ exports.run = (client, message) =>{
   return;
 };
 
+exports.settings = {
+  enabled: false,     
+  public: false,
+};
+
 exports.help = {
   name: 'cat',
   description: '😺Tells you a cat fact and sends a random cat picture.',
