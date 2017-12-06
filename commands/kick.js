@@ -88,8 +88,9 @@ exports.run = (client, message, args) => {
 };
 
 exports.settings = {
-  enabled: false,     
-  public: false,
+  enabled: true,     
+  public: true,
+  PM: false,
 };
 
 exports.help = {

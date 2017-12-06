@@ -53,8 +53,9 @@ await  booru.search(site, tags, {limit: 1, random: true})
 };
 
 exports.settings = {
-  enabled: false,     
-  public: false,
+  enabled: true,     
+  public: true,
+  PM: true,
 };
 
 exports.help = {
