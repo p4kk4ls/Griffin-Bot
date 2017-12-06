@@ -75,7 +75,7 @@ fs.readdir("./Utils", (err, files) =>{
   
     console.log(`\n┌──────────────────────────────────────┐\n|I am trying to load ${filesjs.length} utils, hold up!`)
     filesjs.forEach((f, i) => {
-        require(`./Utils/${f}`)(process, client, config)
+        require(`./Utils/${f}`)(client, config)
         console.log(`|${i + 1}: ${f} ready to fly!`)
     })
     console.log('└──────────────────────────────────────┘')
