@@ -22,8 +22,9 @@ exports.run = (client, message) =>{
 };
 
 exports.settings = {
-  enabled: false,     
-  public: false,
+  enabled: true,     
+  public: true,
+  PM: true,
 };
 
 exports.help = {

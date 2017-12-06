@@ -55,8 +55,9 @@ exports.run = async(client, message, args) =>{
 };
 
 exports.settings = {
-  enabled: false,     
-  public: false,
+  enabled: true,     
+  public: true,
+  PM: true,
 };
 
 exports.help = {

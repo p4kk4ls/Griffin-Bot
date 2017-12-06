@@ -34,6 +34,7 @@ console.log(process.uptime())
 client.commands = new Discord.Collection
 client.commandsHidden = new Discord.Collection
 client.events = new Discord.Collection
+client.commandsDisabled = new Discord.Collection
 
 
 /**
@@ -95,10 +96,15 @@ fs.readdir("./commands/", (err, files) =>{
     filesjs.forEach((f, i) => {
         let file = require(`./commands/${f}`)
 
-        if(file.settings.enabled == false) return console.log(`|${i + 1}: ${f} is disabled!`)
+        if(file.settings.enabled == false) { 
+            client.commandsDisabled.set(file.help.name, file)
+            console.log(`|${i + 1}: ${f} is disabled!`)
+            return
+        }
         console.log(`|${i + 1}: ${f} ready to fly!`)
         if(file.settings.public == false){
             client.commandsHidden.set(file.help.name, file);
+            return
         }
         client.commands.set(file.help.name, file);
     })
@@ -109,21 +115,27 @@ fs.readdir("./commands/", (err, files) =>{
  * Command Handler
  */
 client.on('message', (message) =>{
-  if (message.channel.type !== 'text') return;
-  if(message.author.bot) return;
-  if(!message.content.startsWith(prefix)) return;
+//   if (message.channel.type !== 'text') return;
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
 
   let messageAray = message.content.split(' ');
   let command = messageAray[0];
   let args = messageAray.slice(1);
-
   let cmd = client.commands.get(command.slice(prefix.length))
+  let cmdHidden = client.commandsHidden.get(command.slice(prefix.length))
+
   if(cmd) {
-  cmd.run(client, message, args, config)
-  console.log(`┌─────────────────────\n|${message.author.tag} used '${command} ${args}' in '${message.guild.name}'/'${message.channel.name}'\n└─────────────────────`);
+    if(cmd.settings.PM == false & message.channel.type !== 'text') return message.channel.send("This command is not allowed in PMs!!").then(message => message.delete(5000));
+    cmd.run(client, message, args, config)
+  }
+  if(cmdHidden){
+      if(message.author.id !== config.ownerID) return;
+    cmdHidden.run(client, message, args, config)
   }
 });
 
 if(testrun == true) return 0;
+
 
 client.login(config.token);

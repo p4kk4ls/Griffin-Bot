@@ -15,8 +15,9 @@ module.exports.run = (client, message, args, config) => {
 };
 
 exports.settings = {
-  enabled: false,     
-  public: false,
+  enabled: true,     
+  public: true,
+  PM: true,
 };
 
 exports.help = {
