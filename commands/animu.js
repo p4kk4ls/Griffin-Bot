@@ -11,13 +11,13 @@ exports.run = async(client, message, args, config) =>{
       .setColor('#d15b12');
     await message.channel.send({embed});
 
-     var textRecived = await message.channel.awaitMessages(messageAwait => {return messageAwait}, {time: 20000, max: 1})
-     console.log(textRecived)
-     var args = textRecived[0].toString;
+     var textRecived = await message.channel.awaitMessages(m => message.author.id == m.author.id, {time: 20000, max: 1})
+
+     var animename = textRecived.first().content
      console.log(args)
-    return;
+  } else {
+    let animename = args.join(' ');
   }
-  let animename = args.join(' ');
   console.log (animename);
   api.anime.search(animename)
     .then(result =>{
