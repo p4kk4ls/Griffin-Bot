@@ -10,15 +10,11 @@ exports.run = async(client, message, args, config) =>{
       .setTitle('What anime i should find?')
       .setColor('#d15b12');
     await message.channel.send({embed});
-
      var textRecived = await message.channel.awaitMessages(m => message.author.id == m.author.id, {time: 20000, max: 1})
-
      var animename = textRecived.first().content
-     console.log(args)
   } else {
     let animename = args.join(' ');
   }
-  console.log (animename);
   api.anime.search(animename)
     .then(result =>{
 
