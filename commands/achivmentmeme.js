@@ -22,7 +22,7 @@ exports.settings = {
 };
 
 exports.help = {
-  name: 'achiv',
-  description: '🏆 Achievement get!',
-  usage: 'achiv [text]'
+  name: 'achiev',
+  description: '🏆 Generates a Minecraft style achievement!',
+  usage: 'achiev [text]'
 };
