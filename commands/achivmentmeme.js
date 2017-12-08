@@ -1,20 +1,17 @@
 const Jimp = require('jimp')
-exports.run = (client, message, args) =>{
-  Jimp.read('https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t=', function (err, image) {
+exports.run = async(client, message, args) => {
+  message.channel.startTyping();
+  Jimp.read('https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t=', async function (err, image) {
     let rip = args.join(' ');
-
-    message.channel.startTyping();
-    Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (font) {
+    Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(async function (font) {
       image.print(font, 59, 32, rip);
-      image.write(`./img/achiv${message.author.tag}.png`);
-    });
+      image.write(`../img/achiv${message.author.id}.png`);
+      await message.channel.send({file: `../img/achiv${message.author.id}.png`})
+    })
+    await message.channel.stopTyping()
 
     if (err) throw err;
   });
-  setTimeout(() => {
-    message.channel.send({file: `./img/achiv${message.author.tag}.png`});
-    message.channel.stopTyping();
-  }, Math.random() * (100 - 3) + 5 * 1000);
 
 };
 

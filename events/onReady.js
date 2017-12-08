@@ -11,14 +11,14 @@ exports.run = (client, config) =>{
       .setTimestamp(new Date());
     client.channels.get('331072865707360258').send({ embed });
     console.log(`┌────────────────────┐\n|Took: ${process.uptime() } seconds!|\n└────────────────────┘`);
-    console.log("Commands")
-    console.log(client.commands)
+    // console.log("Commands")
+    // console.log(client.commands)
 
-    console.log("Disabled Commands")
-    console.log(client.commandsDisabled)
+    // console.log("Disabled Commands")
+    // console.log(client.commandsDisabled)
 
-    console.log("Hidden Commands")
-    console.log(client.commandsHidden)
+    // console.log("Hidden Commands")
+    // console.log(client.commandsHidden)
   });
 };
 
