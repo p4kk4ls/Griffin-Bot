@@ -24,5 +24,6 @@ exports.settings = {
 exports.help = {
   name: 'achiev',
   description: '🏆 Generates a Minecraft style achievement!',
-  usage: 'achiev [text]'
+  usage: 'achiev [text]',
+  owneronly: false
 };
