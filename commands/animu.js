@@ -8,16 +8,16 @@ exports.run = async(client, message, args, config) =>{
   if (args.length < 1){ 
     let embed = new Discord.RichEmbed()
       .setTitle('What anime i should find?')
+      .setDescription('Awaiting input....')
       .setColor('#d15b12');
     await message.channel.send({embed});
-     var textRecived = await message.channel.awaitMessages(m => message.author.id == m.author.id, {time: 20000, max: 1})
+     var textRecived = await message.channel.awaitMessages(m => message.author.id == m.author.id, {time: 8000, max: 1})
      var animename = textRecived.first().content
   } else {
     let animename = args.join(' ');
   }
   api.anime.search(animename)
     .then(result =>{
-
       var synopsis = result.anime[0].synopsis.toString().replace(/<[^>]+>|\[[^>]+]/gi, '');
       synopsis = he.decode(synopsis);
       if(synopsis.length <= 250) return synopsis = "Desc too long for discord! Sorry, pls don't hurt me"
@@ -35,11 +35,7 @@ exports.run = async(client, message, args, config) =>{
       message.channel.send({embed});
     })
     .catch(err =>{
-      let Searching = new Discord.RichEmbed()
-        .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
-        .setDescription('Try to be more specific.')
-        .setColor('#c40101');
-      message.channel.send({embed: Searching})
+      message.channel.send(`❌ Sorry but i can't find ${animename}.`)
       console.log(err);});
 };
 
@@ -51,6 +47,6 @@ exports.settings = {
 
 exports.help = {
   name: 'anime',
-  description: '🔍 Searches for animu.',
+  description: '🔍 Searches for anime on MAL.',
   usage: 'anime [name]'
 };
