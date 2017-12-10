@@ -7,9 +7,8 @@ exports.run = async(client, message, args) => {
       image.print(font, 59, 32, rip);
       image.write(`../img/achiv${message.author.id}.png`);
       await message.channel.send({file: `../img/achiv${message.author.id}.png`})
+      message.channel.stopTyping()
     })
-    await message.channel.stopTyping()
-
     if (err) throw err;
   });
 
