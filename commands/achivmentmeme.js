@@ -18,11 +18,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: ['REMOVE MESSAGES'],
 };
 
 exports.help = {
   name: 'achiev',
   description: '🏆 Generates a Minecraft style achievement!',
+  longDescription: "",
   usage: 'achiev [text]',
-  owneronly: false
 };
