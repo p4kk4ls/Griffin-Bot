@@ -36,26 +36,23 @@ client.events = new Discord.Collection
 
 Loader('./commands/', client.commands)
 Loader('./events/', client.events, true)
-console.log(client.events)
-client.events.forEach((event) => { console.log("Running" + event.run); event.run() })
 
-/**
- * Command Handler
- */
+
 client.on('message', (message) =>{
-//   if (message.channel.type !== 'text') return;
-  if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
+    console.log(permission)
+    if (!message.content.startsWith(prefix)) return;
+    if (message.author.bot) return;
 
-  let messageAray = message.content.split(' ');
-  let command = messageAray[0];
-  let args = messageAray.slice(1);
-  let cmd = client.commands.get(command.slice(prefix.length))
+    let messageAray = message.content.split(' ');
+    let command = messageAray[0];
+    let args = messageAray.slice(1);
+    let cmd = client.commands.get(command.slice(prefix.length))
+    
 
-  if(cmd) {
-    if(cmd.settings.PM == false & message.channel.type !== 'text') return message.channel.send("This command is not allowed in PMs!!")
-    cmd.run(client, message, args, config)
-  }
+    if(cmd) {
+        if(cmd.settings.PM == false & message.channel.type !== 'text') return message.channel.send("This command is not allowed in PMs!!")
+        cmd.run(client, message, args, config)
+    }
 });
 
 
