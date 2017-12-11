@@ -37,9 +37,10 @@ client.events = new Discord.Collection
 Loader('./commands/', client.commands)
 Loader('./events/', client.events, true)
 
+console.log(client.guilds)
+
 
 client.on('message', (message) =>{
-    console.log(permission)
     if (!message.content.startsWith(prefix)) return;
     if (message.author.bot) return;
 
@@ -50,6 +51,9 @@ client.on('message', (message) =>{
     
 
     if(cmd) {
+        console.log(cmd.settings)
+        cmd.settings.permissionsRequired.forEach(perm => { if(!message.guild.member(message.author).hasPermission(perm)) return })
+        // if(!message.guild.member(message.author).hasPermission(cmd.settings.permissionsRequired[0])) return;
         if(cmd.settings.PM == false & message.channel.type !== 'text') return message.channel.send("This command is not allowed in PMs!!")
         cmd.run(client, message, args, config)
     }
