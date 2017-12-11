@@ -6,7 +6,6 @@ exports.run = async(client, message, args) =>{
   let embed = new Discord.RichEmbed()
     .setTitle(`🎲 You rolled ${math}!`)
     .setColor('#2563c6');
-  console.log(args[0] +' ' + args[1]);
   message.channel.send({embed});
 };
 
