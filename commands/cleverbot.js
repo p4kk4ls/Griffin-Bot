@@ -1,16 +1,14 @@
 const Cleverbot = require('cleverbot-node');
 const clbot = new Cleverbot;
 
-module.exports.run = (client, message, args, config) => {
+module.exports.run = async(client, message, args, config) => {
   clbot.configure({ botapi: config.clevertoken });
   let Input = args.join();
 
-  clbot.write(Input, (response) => {
+  await clbot.write(Input, (response) => {
     message.channel.startTyping();
-    setTimeout(() => {
-      message.channel.send(response.output).catch(console.error);
-      message.channel.stopTyping();
-    }, Math.random() * (1 - 3) + 1 * 1000);
+    message.channel.send(response.output).catch(console.error);
+    message.channel.stopTyping();
   });
 };
 
@@ -18,10 +16,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'cl',
   description: '💬 Talk to me!',
+  longDescription: "",
   usage: 'cl [message]'
 };
