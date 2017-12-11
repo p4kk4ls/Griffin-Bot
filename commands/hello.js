@@ -4,7 +4,7 @@ exports.run = (client, message, args) =>{
 };
 
 exports.settings = {
-  enabled: true,     
+  enabled: false,     
   public: true,
   PM: true,
 };
