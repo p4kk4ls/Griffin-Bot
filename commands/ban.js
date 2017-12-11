@@ -101,5 +101,6 @@ exports.settings = {
 exports.help = {
   name: 'ban',
   description: '🔨 Unleash the banhammer!!',
+  longDescription: "",
   usage: 'ban [mention] [reason]'
 };

@@ -50,5 +50,6 @@ exports.settings = {
 exports.help = {
   name: 'anime',
   description: '🔍 Searches for anime on MAL.',
+  longDescription: "",
   usage: 'anime [name]'
 };
