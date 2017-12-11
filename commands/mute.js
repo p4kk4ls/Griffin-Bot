@@ -47,10 +47,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: false,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'mute',
   description: '🙊 Mutes a mentioned user in the given channel.',
+  longDescription: "",
   usage: 'mute [mention or ID]'
 };

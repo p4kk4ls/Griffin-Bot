@@ -23,10 +23,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   pm: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'help',
   description: '❔ Displays all the available commands. Duh!',
+  longDescription: "",
   usage: 'help [command]'
 };

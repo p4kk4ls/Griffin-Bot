@@ -36,11 +36,14 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: false,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 
 exports.help = {
   name: 'urban',
   description: '🔧 Searches for a word/sentence on "Urban Dictionary"',
+  longDescription: "",
   usage: 'urban [word | sentence]'
 };

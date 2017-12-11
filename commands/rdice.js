@@ -14,10 +14,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'roll',
   description: '🎲 Throws dice with the numbers specified.',
+  longDescription: "",
   usage: 'roll [min] [max]'
 };

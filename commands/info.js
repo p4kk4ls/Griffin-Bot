@@ -17,10 +17,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'info',
   description: '🔧 Shows info about the bot! :3',
+  longDescription: "",
   usage: 'info'
 };

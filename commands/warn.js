@@ -83,10 +83,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: false,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'warn',
   description: '🛑 Issues a warning to the mentioned user.',
+  longDescription: "",
   usage: 'warn [mention] [reason]'
 };
