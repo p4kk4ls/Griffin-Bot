@@ -28,13 +28,13 @@ exports.run = async(client, message, args) =>{
       for (let image of images) {
         message.channel.startTyping();
         console.log(image.common.rating)
-        // let embed = new Discord.RichEmbed()
-        //     .addField('Rating:', `${image.common.rating}`, true)
-        //     .addField('Score:', `${image.common.score}`, true)
-        //     .setImage(image.common.file_url)
-        //     .setColor('#c83fff')
-        //     .setFooter(`${site} | Tags: ${args.slice(1).join(' ')}`);
-        //   message.channel.send({embed});
+        let embed = new Discord.RichEmbed()
+            .addField('Rating:', `${image.common.rating}`, true)
+            .addField('Score:', `${image.common.score}`, true)
+            .setImage(image.common.file_url)
+            .setColor('#c83fff')
+            .setFooter(`${site} | Tags: ${args.slice(1).join(' ')}`);
+          message.channel.send({embed});
           message.channel.stopTyping();
       }
     })
