@@ -14,6 +14,15 @@ exports.run = async(client, message, args) =>{
   }
 
   await booru.search(site, tags, {limit: 1, random: true})
+    .catch(err => {         
+      if(err.message.startsWith("Site not supported")) {
+          let embed = new Discord.RichEmbed()
+          .setTitle(`Site is not supported here!!`)
+          .setColor('#c83fff');
+        message.channel.send({embed});
+        return;
+      }
+    })
     .then(booru.commonfy)
     .then(images => {
       for (let image of images) {
@@ -30,6 +39,7 @@ exports.run = async(client, message, args) =>{
       }
     })
     .catch(err => {
+      console.log(err)
       if (err.name === 'booruError') {
         client.channels.get('333727164937666562').send({embed});
         if(err.message.startsWith('Site not ')) {
@@ -45,15 +55,7 @@ exports.run = async(client, message, args) =>{
             .setColor('#c83fff');
           message.channel.send({embed});
           return;
-        } else {
-          let embed = new Discord.RichEmbed()
-          .setTitle(`Can't search this booru right now.`)
-          .setColor('#c83fff');
-        message.channel.send({embed});
-        return;
         }
-      } else {
-        client.channels.get('333727164937666562').send(`${new Date()} Booru ${err}`);
       }
     });
 };
