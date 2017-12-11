@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 exports.run = async(client, message) =>{
-  let invitelink = await client.generateInvite()
+  let invitelink = await client.generateInvite(8)
   let embed = new Discord.RichEmbed()
     .setTitle(`Infoboard for ${client.user.username}`)
     .setDescription('Here is some info about this bot!!')
