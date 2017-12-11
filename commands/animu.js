@@ -43,6 +43,8 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: false,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {

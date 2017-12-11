@@ -19,7 +19,7 @@ exports.settings = {
   public: true,
   PM: true,
   owneronly: false,
-  permissionsRequired: ['REMOVE MESSAGES'],
+  permissionsRequired: [],
 };
 
 exports.help = {
