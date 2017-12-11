@@ -15,11 +15,14 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'rip',
   description: '🗿 Creates a tombstone with a defined text.',
+  longDescription: "",
   usage: 'rip [text]'
 };
         

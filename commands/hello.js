@@ -7,10 +7,13 @@ exports.settings = {
   enabled: false,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'hello',
   description: '👋 Hallo',
+  longDescription: "",
   usage: 'hello'
 };

@@ -69,10 +69,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'translate',
   description: 'TODO',
+  longDescription: "",
   usage: '🈸translate [Text to translate] | [to] | [from]'
 };

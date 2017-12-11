@@ -91,10 +91,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: false,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'kick',
   description: '👞 Kicks the mentioned user.',
+  longDescription: "",
   usage: 'kick [mention] [reason]'
 };

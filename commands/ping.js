@@ -20,10 +20,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'ping',
   description: '🏓 I wonder what it does.',
+  longDescription: "",
   usage: 'ping'
 };

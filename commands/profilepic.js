@@ -22,10 +22,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'profilepic',
   description: `🖨 Grabs mentioned user's profile pic.`,
+  longDescription: "",
   usage: 'profilepic [mention]'
 };

@@ -19,11 +19,14 @@ exports.settings = {
     enabled: true,     
     public: true,
     PM: false,
+    owneronly: false,
+    permissionsRequired: [],
   };
 
 exports.help = {
   name: 'pin',
   description: '🔧 Pins a message',
+  longDescription: "",
   usage: 'pin [message id]'
 };
 

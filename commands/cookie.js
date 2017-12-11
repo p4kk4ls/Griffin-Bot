@@ -25,10 +25,13 @@ exports.settings = {
   enabled: true,     
   public: true,
   PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'sandvich',
   description: '🍪 Gives mentioned user a sandvich.',
+  longDescription: "",
   usage: 'sandvich [mention]'
 };

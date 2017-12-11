@@ -28,11 +28,14 @@ module.exports.run = async(client, message, args) =>{
 exports.settings = {
   enabled: true,     
   public: true,
-  PM: true
+  PM: true,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'profile',
   description: '🎫 Shows information about mentioned user.',
+  longDescription: "",
   usage: 'profile [mention]'
 };
