@@ -1,21 +1,13 @@
 const Discord = require('discord.js');
 
-module.exports.run = async(client, message, args) =>{
-  let user = message.mentions.users.first() || message.author
-    let fakeLoadEmbed = new Discord.RichEmbed()
-      .setAuthor('Searching....')
-      .setColor('#f77a04')
-
-    let msg = await message.channel.send({embed: fakeLoadEmbed})
-
+module.exports.run = (client, message, args) =>{
+  let user = message.mentions.users.first() || client.users.get(args[0]) || message.author
     let finishedEmbed = new Discord.RichEmbed()
       .setAuthor('Link', user.displayAvatarURL,user.displayAvatarURL)
       .setColor('#1bba31')
       .setImage(user.displayAvatarURL);
 
-    await message.channel.send({embed: finishedEmbed})
-
-    msg.delete()
+    message.channel.send({embed: finishedEmbed})
 }
 
 exports.settings = {
