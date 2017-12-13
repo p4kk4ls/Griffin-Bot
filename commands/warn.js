@@ -16,9 +16,9 @@ exports.run = (client, message, args) => {
     let embed = new Discord.RichEmbed()
       .setTitle('Please specify any mentions.')
       .setColor('#f22a0c')
-      .setTimestamp(new Date()).then(botmsg => {botmsg.delete(5000);});
+      .setTimestamp(new Date());
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(msg => msg.delete());
     return;
   }
   message.delete();
