@@ -2,7 +2,7 @@ const YoutubeDL = require('youtube-dl');
 const ytdl = require('ytdl-core');
 const Discord = require('discord.js');
 
-module.exports = (client, config) =>{
+exports.run = (client, config) =>{
   const prefix = config.prefix;
   let queues = {};
 
@@ -262,4 +262,10 @@ module.exports = (client, config) =>{
       //client.channels.get('333727164937666562').send({embed: errorEmbed});
     });
   }
+};
+
+
+exports.settings = {
+      enabled: true,     
+      public: true,
 };
