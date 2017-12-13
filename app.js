@@ -36,6 +36,7 @@ client.events = new Discord.Collection
 
 Loader('./commands/', client.commands)
 Loader('./events/', client.events, true)
+Loader('./Utils/', false, true)
 
 console.log(client.guilds)
 
@@ -80,7 +81,9 @@ function Loader(loadFolder, collection, requiring) {
                 file.run(client, config)
             }
             console.log(`${i + 1}: ${f} ready to fly!`);
-            collection.set(file.help.name, file);
+            if(collection !== false){
+                collection.set(file.help.name, file);
+            }
         });
         console.log('──────────────────────────────────────');
     });
