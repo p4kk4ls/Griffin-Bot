@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
   let reason = args.slice(1).join(' ');
   let userToBan = await message.mentions.users.first() || client.users.get(args[0]);
 
