@@ -1,5 +1,5 @@
 const Jimp = require('jimp')
-exports.run = async(client, message, args) => {
+exports.run = (client, message, args) => {
   message.channel.startTyping();
   Jimp.read('https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t=', function (err, image) {
     let rip = args.join(' ');
