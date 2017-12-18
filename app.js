@@ -32,6 +32,8 @@ const prefix = config.prefix;
 
 client.commands = new Discord.Collection
 client.events = new Discord.Collection
+ var Dict = {}
+ console.log(Dict)
 
 
 Loader('./commands/', client.commands)
