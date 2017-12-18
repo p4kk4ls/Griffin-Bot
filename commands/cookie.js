@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 exports.run = (client, message) =>{
   let giveCookieto = message.mentions.users.first();
-  if(giveCookieto == message.author) return message.channel.send('Loser!');
+  if(giveCookieto == message.author) return message.channel.send('No.');
 
   if (message.mentions.users.size < 1) { 
     let embed = new Discord.RichEmbed()
