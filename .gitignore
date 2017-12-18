@@ -55,5 +55,6 @@ jspm_packages
 config-local.json
 img
 .vscode/
-
+.vs/
 img/rip.png
+
