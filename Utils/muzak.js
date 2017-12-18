@@ -266,6 +266,6 @@ exports.run = (client, config) =>{
 
 
 exports.settings = {
-      enabled: true,     
+      enabled: false,     
       public: true,
 };
