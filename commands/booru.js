@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
 exports.run = async(client, message, args) =>{
-  if(message.channel.nsfw){ console.log("booru"); var booru = require('booru') } else { console.log('sfwbooru'); var booru = require('sfwbooru') }
+  if(message.channel.nsfw){ var booru = require('booru') } else { var booru = require('sfwbooru') }
   let site = args[0];
   let tags = args.slice(1);
-  if(args.length < 1) {
+  if(!args[0] || !args[1]) {
     let embed = new Discord.RichEmbed()
       .setTitle('Please specify a booru and tags!')
       .setDescription('Use |~help booru| for extended info about tags and sites.')
@@ -14,7 +14,8 @@ exports.run = async(client, message, args) =>{
   }
 
   await booru.search(site, tags, {limit: 1, random: true})
-    .catch(err => {         
+    .catch(err => { 
+      console.log(err)        
       if(err.message.startsWith("Site not supported")) {
           let embed = new Discord.RichEmbed()
           .setTitle(`Site is not supported here!!`)

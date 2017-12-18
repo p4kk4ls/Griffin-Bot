@@ -23,7 +23,7 @@ exports.settings = {
 
 exports.help = {
   name: 'info',
-  description: '🔧 Shows info about the bot! :3',
+  description: '🔧 Shows info about the bot.',
   longDescription: "",
   usage: 'info'
 };
