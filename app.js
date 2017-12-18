@@ -32,15 +32,11 @@ const prefix = config.prefix;
 
 client.commands = new Discord.Collection
 client.events = new Discord.Collection
- var Dict = {}
- console.log(Dict)
 
 
 Loader('./commands/', client.commands)
 Loader('./events/', client.events, true)
 Loader('./Utils/', false, true)
-
-console.log(client.guilds)
 
 
 client.on('message', (message) =>{
