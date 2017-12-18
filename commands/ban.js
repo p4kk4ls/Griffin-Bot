@@ -1,26 +1,16 @@
 const Discord = require('discord.js');
 exports.run = async (client, message, args) => {
   let reason = args.slice(1).join(' ');
-  let userToBan = message.mentions.users.first();
+  let userToBan = await message.mentions.users.first() || client.users.get(args[0]);
 
-  if(!message.guild.member(message.author).hasPermission('BAN_MEMBERS')) return message.reply('You can\'t fool me! You dont have permissions!');
+  let errorEmbed = new Discord.RichEmbed()
+    .setAuthor("Missing arguments!!")
+    .setDescription("ban [mention/userID] [reason]")
+    .setColor('#f22a0c');
 
-  if (reason.length < 1) {
-    let embed = new Discord.RichEmbed()
-      .setTitle('Specify a reason for a ban!')
-      .setColor('#f22a0c')
-
-    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
-    return;
-  }
-
-  if (message.mentions.users.size < 1) {
-    let embed = new Discord.RichEmbed()
-      .setTitle('Please specify any mentions or userID\'s!')
-      .setColor('#f22a0c')
-
-    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
-    return;
+  if(!userToBan || !reason){
+    message.channel.send(errorEmbed)
+    return
   }
 
   if (!message.guild.member(userToBan).bannable) {
@@ -33,63 +23,27 @@ exports.run = async (client, message, args) => {
   }
   
   message.guild.ban(userToBan, reason);
-  message.delete
-//Embed Section
-//Basic BANNED Embed
-  const basicBan = new Discord.RichEmbed()
+  message.delete()
+
+  let embedModLog = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.avatarURL)
-    .setDescription('Copy of this message was sent to server owner and #mod-log!')
     .setColor(0x00AE86)
     .setTimestamp(new Date)
     .addField('Action', 'Ban', true)
-    .addField('Moderator', `${message.author.tag}`, true)
-    .addField('Target', `${userToBan.tag}`, true)
-    .addField('Reason', `${reason}`, true)
-    .setFooter('Ban', client.user.avatarURL);
+    .addField('Moderator', message.author.tag, true)
+    .addField('Target', userToBan.tag, true)
+    .addField('Reason', reason, true)
+    .setFooter(message.guild.name, message.guild.iconURL);
 
-//Banned PM
-  const BannedPM = new Discord.RichEmbed()
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .setDescription('You have been banned!!')
-    .setColor('#ff0000')
-    .setTimestamp(new Date)
-    .addField('Action', 'Ban', true)
-    .addField('Moderator', `${message.author.tag}`, true)
-    .addField('Target', `${userToBan.tag}`, true)
-    .addField('Reason', `${reason}`, true)
-    .setFooter('Ban', client.user.avatarURL);
-
-//Banned Channel
-//With Mod=Log
- const channelModLog = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username} used BANHAMMER`, message.author.avatarURL)
-    .setColor(0x00AE86)
-    .setTimestamp(new Date)
-    .addField(`And ${userToBan.tag} is gone`, `Check mod-log for more info.`, true)
-    .setFooter('Ban', client.user.avatarURL);
-
-  const basicBanNoLog = new Discord.RichEmbed()
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .setDescription('I recommend creating #mod-log channel!')
-    .setColor(0x00AE86)
-    .setTimestamp(new Date)
-    .addField('Action', 'Ban', true)
-    .addField('Moderator', `${message.author.tag}`, true)
-    .addField('Target', `${userToBan.tag}`, true)
-    .addField('Reason', `${reason}`, true)
-    .setFooter('Ban', client.user.avatarURL);
+  let embedSmall = new Discord.RichEmbed()
+    .setAuthor(`${userToBan.tag} has been banned! 👌 `, userToBan.displayAvatarURL)
+    .setColor('#00ff0c'); 
 
 
-  if(message.guild.channels.find('name', 'mod-log')){
-    message.channel.send({embed: channelModLog})
-    client.users.get(userToBan.id).send({embed: BannedPM});
-    message.guild.channels.find('name', 'mod-log').send({embed: basicBan})
-    message.guild.owner.send({embed: BannedPM});
-  } else {
-    message.channel.send({embed: basicBanNoLog});
-    client.users.get(userToBan.id).send({embed: BannedPM});
-    message.guild.owner.send({embed: basicBanNoLog});
-  }
+
+  if(message.guild.channels.find('name', 'mod-log')){ message.guild.channels.find('name', 'mod-log').send({embed:embedModLog}) }
+  message.channel.send({ embed: embedSmall })
+  client.users.get(userToBan.id).send({embed:embedModLog})
 };
 
 exports.settings = {
@@ -102,7 +56,7 @@ exports.settings = {
 
 exports.help = {
   name: 'ban',
-  description: '🔨 Unleash the banhammer!!',
+  description: '🔨 Unleash the hammer!!',
   longDescription: "",
-  usage: 'ban [mention] [reason]'
+  usage: 'ban [mention/userID] [reason]'
 };
