@@ -2,20 +2,17 @@
 const Discord = require('discord.js');
 const mal = require('MALjs');
 const he = require('he');
+const awaitInput = require('../Utils/inputAway')
 
 exports.run = async(client, message, args, config) =>{
+  var animename = args.join(' ');
   var api = new mal(config.MALlogin, config.MALpass);
   if (args.length < 1){ 
-    let embed = new Discord.RichEmbed()
-      .setTitle('What anime i should find?')
-      .setDescription('Awaiting input....')
-      .setColor('#d15b12');
-    await message.channel.send({embed});
-     var textRecived = await message.channel.awaitMessages(m => message.author.id == m.author.id, {time: 8000, max: 1})
-     var animename = textRecived.first().content
-  } else {
-    let animename = args.join(' ');
+    animename = await awaitInput.run(message, 8000, 1, m => m.author.id == message.author.id)
+    if(!animename.first()) return
+    animename =  animename.first().content
   }
+
   api.anime.search(animename)
     .then(result =>{
       var synopsis = result.anime[0].synopsis.toString().replace(/<[^>]+>|\[[^>]+]/gi, '');

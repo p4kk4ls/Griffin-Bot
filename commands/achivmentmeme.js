@@ -1,8 +1,19 @@
+const Discord = require('discord.js')
 const Jimp = require('jimp')
-exports.run = (client, message, args) => {
+const awaitInput = require('../Utils/inputAway')
+
+exports.run = async(client, message, args) => {
+  let rip = args.join(' ');
+
+  if (args.length < 1){ 
+    rip = await awaitInput.run(message, 8000, 1, m => m.author.id == message.author.id)
+    rip =  rip.first().content
+    console.log(rip)
+  }
+
+
   message.channel.startTyping();
   Jimp.read('https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t=', function (err, image) {
-    let rip = args.join(' ');
     Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (font) {
       image.print(font, 59, 32, rip);
       image.write(`../img/achiv${message.author.id}.png`, function() {
