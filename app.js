@@ -42,7 +42,6 @@ Loader('./Utils/', false, true)
 client.on('message', (message) =>{
     if (!message.content.startsWith(prefix)) return;
     if (message.author.bot) return;
-
     let messageAray = message.content.split(' ');
     let command = messageAray[0];
     let args = messageAray.slice(1);
