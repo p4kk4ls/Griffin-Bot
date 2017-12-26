@@ -51,7 +51,7 @@ exports.settings = {
   public: true,
   PM: false,
   owneronly: false,
-  permissionsRequired: [],
+  permissionsRequired: ['BAN_MEMBERS'],
 };
 
 exports.help = {

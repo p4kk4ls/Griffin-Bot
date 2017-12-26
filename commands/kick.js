@@ -52,7 +52,7 @@ exports.settings = {
   public: true,
   PM: false,
   owneronly: false,
-  permissionsRequired: [],
+  permissionsRequired: ['KICK_MEMBERS'],
 };
 
 exports.help = {
