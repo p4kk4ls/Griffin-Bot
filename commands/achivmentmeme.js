@@ -4,6 +4,7 @@ const awaitInput = require('../Utils/inputAway')
 
 exports.run = async(client, message, args) => {
   let rip = args.join(' ');
+  var achieveURL = 'https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t='
 
   if (args.length < 1){ 
     rip = await awaitInput.run(message, 8000, 1, m => m.author.id == message.author.id)
@@ -13,7 +14,7 @@ exports.run = async(client, message, args) => {
 
 
   message.channel.startTyping();
-  Jimp.read('https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t=', function (err, image) {
+  Jimp.read(achievURL, function (err, image) {
     Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (font) {
       image.print(font, 59, 32, rip);
       image.write(`../img/achiv${message.author.id}.png`, function() {
