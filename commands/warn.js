@@ -6,7 +6,7 @@ exports.run = (client, message, args) => {
     let embed = new Discord.RichEmbed()
       .setTitle('Specify a reason for warning!')
       .setColor('#f22a0c')
-      .setTimestamp(new Date()).then(botmsg => {botmsg.delete(5000);});
+      .setTimestamp(new Date());
 
     message.channel.send({embed});
     return;
