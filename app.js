@@ -29,7 +29,6 @@ switch(nodeArgs[0]) {
 
 const prefix = config.prefix;
 
-
 client.commands = new Discord.Collection
 client.events = new Discord.Collection
 
