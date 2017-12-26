@@ -1,28 +1,19 @@
 const Discord = require('discord.js');
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
   let reason = args.slice(1).join(' ');
-  let user = message.mentions.users.first();
+  let userToBan = await message.mentions.users.first() || client.users.get(args[0]);
 
-  if(!message.guild.member(message.author).hasPermission('KICK_MEMBERS')) return message.channel.send('You dont have permissions ya twat!');
+  let errorEmbed = new Discord.RichEmbed()
+    .setAuthor("Missing arguments!!")
+    .setDescription("kick [mention/userID] [reason]")
+    .setColor('#f22a0c');
 
-  if (reason.length < 1) {
-    let embed = new Discord.RichEmbed()
-      .setTitle('Specify a reason and user for a kick!')
-      .setColor('#f22a0c')
-
-    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
-    return;
+  if(!userToBan || !reason){
+    message.channel.send(errorEmbed)
+    return
   }
 
-  if (message.mentions.users.size < 1) {
-    let embed = new Discord.RichEmbed()
-      .setTitle('Please specify any mentions.')
-      .setColor('#f22a0c')
-
-    message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
-    return;
-  }
-  if (!message.guild.member(user).kickable) {
+  if (!message.guild.member(userToBan).kickable) {
     let embed = new Discord.RichEmbed()
       .setTitle('This user is not kickable for me!')
       .setColor('#f22a0c')
@@ -30,65 +21,43 @@ exports.run = (client, message, args) => {
     message.channel.send({embed}).then(botmsg => {botmsg.delete(5000)});
     return;
   }
-  message.guild.member(user).kick();
-  message.delete();
-
-  //Embeds
-  //Kicked PM
-  const kickedPM = new Discord.RichEmbed()
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .setDescription('You have been kicked!!')
-    .setColor('#ff0000')
-    .setTimestamp(new Date)
-    .addField('Action', 'Kick', true)
-    .addField('Moderator', `${message.author.tag}`, true)
-    .addField('Target', `${user.tag}`, true)
-    .addField('Reason', `${reason}`, true)
-    .setFooter('Kick', client.user.avatarURL);
   
-  //Channel with Modlog
-  const channelModLog = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username} kicked some ass and chewed bubblegum!`, message.author.avatarURL)
-    .setColor(0x00AE86)
-    .setTimestamp(new Date)
-    .addField(`And ${user.tag} is gone`, 'Check mod-log for more info.', true);
+  message.guild.member(userToBan).kick();
+  message.delete()
 
-  //No modlog
-  const channelNoLog = new Discord.RichEmbed()
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .setDescription('Copy of this message was sent to server owner!\nCreating a #mod-log channel is recomended!')
-    .setColor(0x00AE86)
-    .setTimestamp(new Date)
-    .addField('Action', 'Kick', true)
-    .addField('Moderator', `${message.author.tag}`, true)
-    .addField('Target', `${user.tag}`, true)
-    .addField('Reason', `${reason}`, true)
-    .setFooter('Kick', client.user.avatarURL);
-
-  //Basic Embed
-  const embedBasic = new Discord.RichEmbed()
+  let embedModLog = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.avatarURL)
     .setColor(0x00AE86)
     .setTimestamp(new Date)
     .addField('Action', 'Kick', true)
-    .addField('Moderator', `${message.author.tag}`, true)
-    .addField('Target', `${user.tag}`, true)
-    .addField('Reason', `${reason}`, true)
-    .setFooter('Kick', client.user.avatarURL);
+    .addField('Moderator', message.author.tag, true)
+    .addField('Target', userToBan.tag, true)
+    .addField('Reason', reason, true)
+    .setFooter(message.guild.name, message.guild.iconURL);
 
-  if(message.guild.channels.find('name', 'mod-log')){
-    message.channel.send({embed: channelModLog});
-    client.users.get(user.id).send({embed: kickedPM});
-    message.guild.channels.find('name', 'mod-log').send({embed: embedBasic});
-  } else {
-    message.channel.send({embed: channelNoLog});
-    client.users.get(user.id).send({embed: kickedPM});
-    message.guild.owner.send({embed: channelNoLog});
-  }
+  let embedSmall = new Discord.RichEmbed()
+    .setAuthor(`${userToBan.tag} has been kicked out! 👌 `, userToBan.displayAvatarURL)
+    .setDescription('Hes gone for now...')
+    .setColor('#00ff0c'); 
+
+
+
+  if(message.guild.channels.find('name', 'mod-log')){ message.guild.channels.find('name', 'mod-log').send({embed:embedModLog}) }
+  message.channel.send({ embed: embedSmall })
+  client.users.get(userToBan.id).send({embed:embedModLog})
+};
+
+exports.settings = {
+  enabled: true,     
+  public: true,
+  PM: false,
+  owneronly: false,
+  permissionsRequired: ['KICK_MEMBERS'],
 };
 
 exports.help = {
   name: 'kick',
   description: '👞 Kicks the mentioned user.',
-  usage: 'kick [mention] [reason]'
+  longDescription: "",
+  usage: 'kick [mention/userID] [reason]'
 };

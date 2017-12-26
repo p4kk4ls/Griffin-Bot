@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 exports.run = (client, message) =>{
   let giveCookieto = message.mentions.users.first();
-  if(giveCookieto == message.author) return message.channel.send('Loser!');
+  if(giveCookieto == message.author) return message.channel.send('No.');
 
   if (message.mentions.users.size < 1) { 
     let embed = new Discord.RichEmbed()
@@ -21,8 +21,17 @@ exports.run = (client, message) =>{
   message.channel.send({embed});
 };
 
+exports.settings = {
+  enabled: true,     
+  public: true,
+  PM: true,
+  owneronly: false,
+  permissionsRequired: [],
+};
+
 exports.help = {
   name: 'sandvich',
   description: '🍪 Gives mentioned user a sandvich.',
+  longDescription: "",
   usage: 'sandvich [mention]'
 };

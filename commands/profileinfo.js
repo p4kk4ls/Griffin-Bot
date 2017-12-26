@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 module.exports.run = async(client, message, args) =>{
-    let user = message.mentions.users.first() || message.author
+    let user = message.mentions.users.first() || client.users.get(args[0]) || message.author
 
     var userstatus = user.presence.status
     var userGame = user.presence.game
@@ -9,7 +9,7 @@ module.exports.run = async(client, message, args) =>{
     if(userstatus == 'offline'){var userstatus = "Offline"}
     if(userstatus == 'dnd'){var userstatus = "Do Not Disturb"}
     if(userstatus == 'idle'){var userstatus = "Idle/Away"}
-    if(userGame){var userGame = userGame.name} else {var userGame = "ᅠ"}
+    if(userGame){var userGame = userGame.name} else {var userGame = "Nothing"}
 
     let embed = new Discord.RichEmbed()
       .setAuthor(`${user.tag}`, user.avatarURL)
@@ -24,8 +24,18 @@ module.exports.run = async(client, message, args) =>{
     console.log(GetColour(user.avatarURL)+"nonfunc")
     return
 }
+
+exports.settings = {
+  enabled: true,     
+  public: true,
+  PM: true,
+  owneronly: false,
+  permissionsRequired: [],
+};
+
 exports.help = {
   name: 'profile',
   description: '🎫 Shows information about mentioned user.',
-  usage: 'profile [mention]'
+  longDescription: "",
+  usage: 'profile {mention/userID}'
 };

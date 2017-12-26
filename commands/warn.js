@@ -2,12 +2,11 @@ const Discord = require('discord.js');
 exports.run = (client, message, args) => {
   let reason = args.slice(1).join(' ');
   let user = message.mentions.users.first();
-  if(!message.guild.member(message.author).hasPermission('MANAGE_MESSAGES')) return message.reply('You dont have permissions ya twat!');
   if (reason.length < 1){
     let embed = new Discord.RichEmbed()
       .setTitle('Specify a reason for warning!')
       .setColor('#f22a0c')
-      .setTimestamp(new Date()).then(botmsg => {botmsg.delete(5000);});
+      .setTimestamp(new Date());
 
     message.channel.send({embed});
     return;
@@ -16,9 +15,9 @@ exports.run = (client, message, args) => {
     let embed = new Discord.RichEmbed()
       .setTitle('Please specify any mentions.')
       .setColor('#f22a0c')
-      .setTimestamp(new Date()).then(botmsg => {botmsg.delete(5000);});
+      .setTimestamp(new Date());
 
-    message.channel.send({embed});
+    message.channel.send({embed}).then(msg => msg.delete());
     return;
   }
   message.delete();
@@ -79,8 +78,17 @@ exports.run = (client, message, args) => {
   }
 };
 
+exports.settings = {
+  enabled: true,     
+  public: true,
+  PM: false,
+  owneronly: false,
+  permissionsRequired: ['MANAGE_MESSAGES'],
+};
+
 exports.help = {
   name: 'warn',
   description: '🛑 Issues a warning to the mentioned user.',
+  longDescription: "",
   usage: 'warn [mention] [reason]'
 };

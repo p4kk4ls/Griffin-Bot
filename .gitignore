@@ -53,6 +53,8 @@ jspm_packages
 
 .eslintrc.json
 config-local.json
-img/achiv.png
-img/rip.png
 img
+.vscode/
+.vs/
+img/rip.png
+
