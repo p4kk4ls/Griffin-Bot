@@ -21,6 +21,11 @@ exports.run = async(channel ,time, max, filter, title) => {
           embedAwait.edit({embed: embedError})
         });
         if(!textRecived.first()) return
+        embedAwait.edit({ 
+          embed: new Discord.RichEmbed()
+          .setTitle(title)
+          .setColor('#d15b12')
+        })
         return textRecived;
 };
 
