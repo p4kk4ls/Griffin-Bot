@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports = (client, config) =>{
+exports.run = (client, config) =>{
     reactionAdded(client);
 };
 
@@ -48,3 +48,9 @@ function sendEmbed(message, messageID) {
         message.guild.channels.find('name', channelSwitchName).send({embed: embed})
     });
 };
+
+  
+  exports.settings = {
+        enabled: true,     
+        public: true,
+  };

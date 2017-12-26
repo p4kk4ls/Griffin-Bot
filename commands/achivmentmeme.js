@@ -1,25 +1,51 @@
+const Discord = require('discord.js')
 const Jimp = require('jimp')
-exports.run = (client, message, args) =>{
-  Jimp.read('https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t=', function (err, image) {
-    let rip = args.join(' ');
+const awaitInput = require('../Utils/inputAway')
+const throwError = require('../Utils/throwError')
 
-    message.channel.startTyping();
+exports.run = async(client, message, args) => {
+  let rip = args.join(' ');
+  var achievURL = 'https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t='
+
+  if (args.length < 1){ 
+    rip = await awaitInput.run(message.channel, 8000, 1, m => m.author.id == message.author.id, 'What is the name of the achievment?')
+    rip = await rip.first().content
+    console.log(rip)
+  }
+  if(!rip) {
+    throwError.throwEmbed('I need something to write on there.')
+    return
+  }
+
+  message.channel.startTyping();
+  Jimp.read(achievURL, function (err, image) {
     Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (font) {
       image.print(font, 59, 32, rip);
-      image.write(`./img/achiv${message.author.tag}.png`);
-    });
-
-    if (err) throw err;
+      image.write(`../img/achiv${message.author.id}.png`, function() {
+        message.channel.send({file: `../img/achiv${message.author.id}.png`})
+        message.channel.stopTyping()
+       }
+      )
+    })
+    if (err) { 
+      throw err
+      throwError.throwErrorLowPriority(client, message.channel, '~Achieve || Jimp Error', err)
+    };
   });
-  setTimeout(() => {
-    message.channel.send({file: `./img/achiv${message.author.tag}.png`});
-    message.channel.stopTyping();
-  }, Math.random() * (100 - 3) + 5 * 1000);
 
 };
 
+exports.settings = {
+  enabled: true,     
+  public: true,
+  PM: true,
+  owneronly: false,
+  permissionsRequired: [],
+};
+
 exports.help = {
-  name: 'achiv',
-  description: '🏆 Achievement get!',
-  usage: 'achiv [text]'
+  name: 'achiev',
+  description: '🏆 Generates a Minecraft style achievement!',
+  longDescription: "",
+  usage: 'achiev [text]',
 };

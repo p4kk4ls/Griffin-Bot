@@ -1,6 +1,6 @@
 {
   "name": "gryphonbot",
-  "version": "3.0.0",
+  "version": "3.2.4",
   "description": "Chatbot for discord",
   "main": "app.js",
   "author": "Aleš Olesov",
@@ -14,7 +14,6 @@
     "aniscrape": "^0.1.1",
     "aniscrape-kissanime": "^0.1.0",
     "apiai": "^4.0.3",
-    "artsy": "^1.8.0",
     "booru": "^0.3.3",
     "cat-facts": "^1.0.2",
     "cleverbot-node": "^0.3.11",
@@ -30,5 +29,15 @@
     "sfwbooru": "0.0.2",
     "youtube-dl": "^1.12.2",
     "ytdl": "^0.6.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/Peskyn12/griffin-bot.git"
+  },
+  "keywords": [
+    "chatbot",
+    "discord"
+  ],
+  "homepage": "https://bitbucket.org/Peskyn12/griffin-bot#readme"
 }

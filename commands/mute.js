@@ -43,8 +43,17 @@ module.exports.run = async(client, message, args) =>{
     }
 }
 
+exports.settings = {
+  enabled: true,     
+  public: true,
+  PM: false,
+  owneronly: false,
+  permissionsRequired: ['MANAGE_MESSAGES'],
+};
+
 exports.help = {
   name: 'mute',
   description: '🙊 Mutes a mentioned user in the given channel.',
+  longDescription: "",
   usage: 'mute [mention or ID]'
 };

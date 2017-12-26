@@ -10,7 +10,7 @@ exports.run = (client, message, args, config) => {
     if (client.commands.has(command)) {
       command = client.commands.get(command);
       let embed = new Discord.RichEmbed()
-        .setAuthor('~' + command.help.name)
+        .setAuthor(config.prefix + command.help.name)
         .setDescription(command.help.description)
         .addField('Usage', command.help.usage);
         
@@ -19,8 +19,17 @@ exports.run = (client, message, args, config) => {
   }
 };
 
+exports.settings = {
+  enabled: true,     
+  public: true,
+  pm: true,
+  owneronly: false,
+  permissionsRequired: [],
+};
+
 exports.help = {
   name: 'help',
   description: '❔ Displays all the available commands. Duh!',
+  longDescription: "",
   usage: 'help [command]'
 };

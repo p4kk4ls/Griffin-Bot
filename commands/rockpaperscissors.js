@@ -82,8 +82,17 @@ exports.run = (client, message, args) =>{
 
 };
 
+exports.settings = {
+  enabled: true,     
+  public: true,
+  PM: true,
+  owneronly: false,
+  permissionsRequired: [],
+};
+
 exports.help = {
   name: 'rps',
   description: '👊 Rock, ✋Paper, ✌Scissors!',
-  usage: 'rps [👊 Rock | ✋Paper | ✌Scissors!]'
+  longDescription: "",
+  usage: 'rps [👊 Rock | ✋Paper | ✌Scissors!]',
 };

@@ -1,25 +1,20 @@
+
 const Discord = require('discord.js');
 const mal = require('MALjs');
 const he = require('he');
+const awaitInput = require('../Utils/inputAway')
 
-exports.run = async (client, message, args, config) =>{
-  const api = await new mal(config.MALlogin, config.MALpass);
-  let animename = args.join(' ');
-  if (animename.length < 1){
-    let user = message.author 
-    let embed = new Discord.RichEmbed()
-      .setTitle('What anime i should find?')
-      .setColor('#d15b12');
+exports.run = async(client, message, args, config) =>{
+  var animename = args.join(' ');
+  var api = new mal(config.MALlogin, config.MALpass);
+  if (args.length < 1){ 
+    animename = await awaitInput.run(message.channel, 8000, 1, m => m.author.id == message.author.id, 'What anime?')
+    if(!animename.first()) return
+    animename = animename.first().content
+  }
 
-    message.channel.send({embed});
-      animename = await message.channel.awaitMessages(m => {return m.content}, { max: 1, time: 5000, errors: ['time'] });
-      animename = animename.toString;
-      console.log (animename);
-  };
-  console.log (animename);
   api.anime.search(animename)
     .then(result =>{
-
       var synopsis = result.anime[0].synopsis.toString().replace(/<[^>]+>|\[[^>]+]/gi, '');
       synopsis = he.decode(synopsis);
       if(synopsis.length <= 250) return synopsis = "Desc too long for discord! Sorry, pls don't hurt me"
@@ -37,16 +32,21 @@ exports.run = async (client, message, args, config) =>{
       message.channel.send({embed});
     })
     .catch(err =>{
-      let Searching = new Discord.RichEmbed()
-        .setAuthor(`I can't find ${args}!!`,'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-128.png')
-        .setDescription('Try to be more specific.')
-        .setColor('#c40101');
-      message.channel.send({embed: Searching})
+      message.channel.send(`❌ Sorry but i can't find ${animename}.`)
       console.log(err);});
+};
+
+exports.settings = {
+  enabled: true,     
+  public: true,
+  PM: false,
+  owneronly: false,
+  permissionsRequired: [],
 };
 
 exports.help = {
   name: 'anime',
-  description: '🔍 Searches for animu.',
+  description: '🔍 Searches for anime on MAL.',
+  longDescription: "",
   usage: 'anime [name]'
 };
