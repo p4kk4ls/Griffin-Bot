@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 exports.run = async(client, message, args) =>{
   let number = args.join(' ');
-  if(!message.guild.member(message.author).hasPermission('MANAGE_MESSAGES')) return message.reply('You dont have permissions ya twat!');
+  if(!message.guild.member(message.author).hasPermission('MANAGE_MESSAGES')) return;
   if (number <= 1) return message.channel.send('I need more messages to delete!');
   let messagecount = parseInt(number);
   await message.delete()
