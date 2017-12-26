@@ -1,17 +1,21 @@
 const Discord = require('discord.js')
 const Jimp = require('jimp')
 const awaitInput = require('../Utils/inputAway')
+const throwError = require('../Utils/throwError')
 
 exports.run = async(client, message, args) => {
   let rip = args.join(' ');
-  var achieveURL = 'https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t='
+  var achievURL = 'https://www.minecraftskinstealer.com/achievement/a.php?i=1&h=Achievement+get%21&t='
 
   if (args.length < 1){ 
-    rip = await awaitInput.run(message, 8000, 1, m => m.author.id == message.author.id)
-    rip =  rip.first().content
+    rip = await awaitInput.run(message.channel, 8000, 1, m => m.author.id == message.author.id, 'What is the name of the achievment?')
+    rip = await rip.first().content
     console.log(rip)
   }
-
+  if(!rip) {
+    throwError.throwEmbed('I need something to write on there.')
+    return
+  }
 
   message.channel.startTyping();
   Jimp.read(achievURL, function (err, image) {
@@ -23,7 +27,10 @@ exports.run = async(client, message, args) => {
        }
       )
     })
-    if (err) throw err;
+    if (err) { 
+      throw err
+      throwError.throwErrorLowPriority(client, message.channel, '~Achieve || Jimp Error', err)
+    };
   });
 
 };
