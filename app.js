@@ -48,7 +48,9 @@ client.on('message', (message) =>{
     
 
     if(cmd) {
-        if(!message.guild.member(message.author).hasPermission(cmd.settings.permissionsRequired[0])) return;
+        if (cmd.settings.permissionsRequired[0]){
+        if(!message.guild.member(message.author).hasPermission(cmd.settings.permissionsRequired[0])) return message.channel.send('You don\'t have perms.');
+    }
         if(cmd.settings.PM == false & message.channel.type !== 'text') return message.channel.send("This command is not allowed in PMs!!")
         cmd.run(client, message, args, config)
     }
