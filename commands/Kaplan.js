@@ -16,10 +16,8 @@ exports.run = async(client, message, args) => {
     awaitedMessageAttachArray = (awaitedMessage.first().attachments).array()
     if (awaitedMessageAttachArray[0]) { 
       userImage = await awaitedMessageAttachArray[0].url
-      console.log('attach') 
     } else { 
          userImage = await awaitedMessage.first().content
-         console.log('Content') 
     }
   }
 
