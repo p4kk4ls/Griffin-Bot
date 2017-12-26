@@ -6,9 +6,7 @@ module.exports.run = async(client, message, args, config) => {
   let Input = args.join();
 
   await clbot.write(Input, (response) => {
-    message.channel.startTyping();
     message.channel.send(response.output).catch(console.error);
-    message.channel.stopTyping();
   });
 };
 
