@@ -8,9 +8,9 @@ exports.run = async(client, message, args, config) =>{
   var animename = args.join(' ');
   var api = new mal(config.MALlogin, config.MALpass);
   if (args.length < 1){ 
-    animename = await awaitInput.run(message, 8000, 1, m => m.author.id == message.author.id)
+    animename = await awaitInput.run(message.channel, 8000, 1, m => m.author.id == message.author.id, 'What anime?')
     if(!animename.first()) return
-    animename =  animename.first().content
+    animename = animename.first().content
   }
 
   api.anime.search(animename)
