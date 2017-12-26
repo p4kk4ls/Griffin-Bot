@@ -39,7 +39,7 @@ exports.run = async(client, message, args) =>{
     public: true,
     PM: false,
     owneronly: false,
-    permissionsRequired: [],
+    permissionsRequired: ['MANAGE_MESSAGES'],
   };
 
 exports.help = {

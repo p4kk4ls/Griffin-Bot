@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 exports.run = (client, message, args) => {
   let reason = args.slice(1).join(' ');
   let user = message.mentions.users.first();
-  if(!message.guild.member(message.author).hasPermission('MANAGE_MESSAGES')) return message.reply('You dont have permissions ya twat!');
   if (reason.length < 1){
     let embed = new Discord.RichEmbed()
       .setTitle('Specify a reason for warning!')
@@ -84,7 +83,7 @@ exports.settings = {
   public: true,
   PM: false,
   owneronly: false,
-  permissionsRequired: [],
+  permissionsRequired: ['MANAGE_MESSAGES'],
 };
 
 exports.help = {

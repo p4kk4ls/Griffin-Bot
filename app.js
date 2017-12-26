@@ -49,8 +49,7 @@ client.on('message', (message) =>{
     
 
     if(cmd) {
-        console.log(cmd.settings)
-        cmd.settings.permissionsRequired.forEach(perm => { if(!message.guild.member(message.author).hasPermission(perm)) return })
+        if(!message.guild.member(message.author).hasPermission(cmd.settings.permissionsRequired[0])) return;
         if(cmd.settings.PM == false & message.channel.type !== 'text') return message.channel.send("This command is not allowed in PMs!!")
         cmd.run(client, message, args, config)
     }
