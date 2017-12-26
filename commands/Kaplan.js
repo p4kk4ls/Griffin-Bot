@@ -1,5 +1,5 @@
 const Jimp = require('jimp')
-const discordError = require('../utils/throwError');
+const discordError = require('../Utils/throwError');
 const awaitMesages = require('../Utils/inputAway');
 
 exports.run = async(client, message, args) => {
