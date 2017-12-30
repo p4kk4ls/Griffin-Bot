@@ -28,6 +28,6 @@ exports.help = {
 
 
 exports.settings = {
-    enabled: true,
+    enabled: false,
     public: true,
   };
