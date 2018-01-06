@@ -74,7 +74,6 @@ exports.run = (client, message, args) => {
       .setFooter('Warn', client.user.avatarURL);
     message.channel.send({embed});
     client.users.get(user.id).send({embed: embedUser});
-    message.guild.owner.send({embed});
   }
 };
 
