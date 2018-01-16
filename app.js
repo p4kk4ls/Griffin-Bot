@@ -1,8 +1,7 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
-
-const fs = require('fs');
-var nodeArgs = process.argv.slice(2)
+const client  = new Discord.Client();
+const fs      = require('fs');
+var nodeArgs  = process.argv.slice(2)
 
 if (fs.existsSync('./config-local.json')) {
     var config = require('./config-local.json');
@@ -30,7 +29,7 @@ switch(nodeArgs[0]) {
 const prefix = config.prefix;
 
 client.commands = new Discord.Collection
-client.events = new Discord.Collection
+client.events   = new Discord.Collection
 
 
 Loader('./commands/', client.commands)
@@ -59,8 +58,7 @@ client.on('message', (message) =>{
 
 function Loader(loadFolder, collection, requiring) {
     fs.readdir(loadFolder, (err, files) => {
-        if (err)
-            return console.error(err);
+        if (err) return console.error(err);
         let filesjs = files.filter(f => f.split(".").pop() === "js");
         if (filesjs <= 0) {
             console.log('No commands to load mate!');

@@ -8,6 +8,8 @@ exports.run = async(client, message) =>{
     .addField('Code Creator', client.users.get('235047463017381888').tag, true)
     .addField('Repo', 'https://bitbucket.org/Peskyn12/griffin-bot')
     .addField('Invite me!!', invitelink)
+    .addField('Support', 'You can support on these platforms:')
+    .addField('Dogecoin', 'D5M6JbBDUkBbRfppNZZeGuyWzAAqgjghPg')
     .setColor('#7f16ff')
     .setThumbnail(client.users.get('235047463017381888').avatarURL);
   message.channel.send({embed});
