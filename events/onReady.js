@@ -19,6 +19,8 @@ exports.run = (client, config) =>{
 
     // console.log("Hidden Commands")
     // console.log(client.commandsHidden)
+
+    console.log(client.users.get('283249520605921282'))
   });
 };
 
