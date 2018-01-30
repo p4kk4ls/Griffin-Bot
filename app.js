@@ -13,7 +13,6 @@ client.events = new Discord.Collection()
 
 Loader('./commands/', client.commands)
 Loader('./events/', client.events, true)
-Loader('./Utils/', false, true)
 
 client.on('message', (message) => {
   let prefix = config.prefix
