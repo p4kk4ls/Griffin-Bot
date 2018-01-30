@@ -18,6 +18,7 @@
     "cat-facts": "^1.0.2",
     "cleverbot-node": "^0.3.11",
     "discord.js": "^11.2.1",
+    "dotenv": "5.0.0",
     "ffmpeg-binaries": "3.2.2-3",
     "google-translate-api": "^2.3.0",
     "got": "8.0.1",
